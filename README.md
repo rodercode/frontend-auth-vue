@@ -1,7 +1,7 @@
 # Frontend authentication with Vue.js
 
 
-![My Image](auth.png)
+![My Image](auth.webp)
 
 # What I have learned
 
