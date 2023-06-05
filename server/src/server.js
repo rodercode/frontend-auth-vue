@@ -9,7 +9,6 @@ import jwtFilter from './middleware/jwtFilter.js';
 import profileController from './controller/profileController.js';
 
 const port = 8000;
-
 const app = express();
 
 app.use(cors());

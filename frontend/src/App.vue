@@ -1,9 +1,12 @@
 <template>
   <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+    <router-link :to="{ name: 'login' }">Login</router-link> |
+    <router-link :to="{ name: 'register' }">Sign Up</router-link> |
+    <router-link :to="{ name: 'guest' }">Guest</router-link> |
+    <router-link :to="{ name: 'user' }">User</router-link> |
+    <router-link :to="{ name: 'admin' }">Admin</router-link>
   </nav>
-  <router-view/>
+  <router-view />
 </template>
 
 <style lang="scss">
