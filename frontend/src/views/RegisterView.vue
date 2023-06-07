@@ -40,7 +40,8 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.container-register {
+.container-register {.container-book-list {
+}
   display: flex;
   justify-content: center;
   align-items: center;

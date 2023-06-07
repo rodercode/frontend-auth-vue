@@ -1,6 +1,6 @@
 <template>
-  <div class="container-register">
-    <form class="form-register">
+  <div class="container-login">
+    <form class="form-login">
       <header class="form-header">
         <h1>Login</h1>
       </header>
@@ -28,7 +28,7 @@
       </p>
       <div class="container-btns">
         <button class="btn">Register new account</button>
-        <button class="btn">Proceed as guest user</button>
+        <button @click="$router.push('/guest')" class="btn">Proceed as guest user</button>
       </div>
     </form>
   </div>
@@ -36,6 +36,8 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import VueRouter from 'vue-router';
+
 
 export default defineComponent({
   name: "RegisterView",
@@ -43,13 +45,13 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.container-register {
+.container-login {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.form-register {
+.form-login {
   background: rgb(207, 201, 201);
   width: 30%;
   padding: 1.5em;
