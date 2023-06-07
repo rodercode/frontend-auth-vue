@@ -9,7 +9,7 @@ html {
 body {
   font-family: "Roboto", sans-serif;
   line-height: 26px;
-  background-color: rgb(203, 196, 196);
+  background-color: #fff;
   font-size: 1rem;
   width: 100%;
   color: rgb(37, 36, 36);
@@ -49,5 +49,6 @@ p {
 
 a:visited,
 a:link {
-  text-decoration: none;
+  color: black;
+  font-weight: 700;
 }

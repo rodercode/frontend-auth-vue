@@ -12,15 +12,17 @@
   <router-view />
 </template>
 
-<style lang="scss">
-#app {
-  text-align: center;
-}
+<style css-scoped lang="css">
+
+
 header {
   background-color: grey;
+  color: #fff;
   padding: 2.5em;
+  text-align: center;
 }
 nav {
+  text-align: center;
   padding: 30px;
 
   a {
