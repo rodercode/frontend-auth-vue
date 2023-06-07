@@ -4,23 +4,29 @@
       <header class="form-header">
         <h1>Register</h1>
       </header>
-      <div class="section-input">
-        <label>Username</label>
-        <input placeholder="Type your username..." type="username" />
-      </div>
+      <section class="section-input">
+        <label class="label-username">Username</label>
+        <input
+          class="input-username"
+          placeholder="Type your username..."
+          type="username"
+        />
+      </section>
 
-      <div class="section-input">
-        <label>Password</label>
-        <input placeholder="Enter a password..." type="password" />
-      </div>
+      <section class="section-input">
+        <label class="label-password">Password</label>
+        <input
+          class="input-password"
+          placeholder="Enter a password..."
+          type="password"
+        />
+      </section>
 
-      <div class="section-sign-in">
-        <p>
-          Already have an account? Sign in
-          <router-link :to="{ name: 'login' }">here</router-link>
-        </p>
-      </div>
-      <button>Register new account</button>
+      <p class="info-link">
+        Already have an account? Sign in
+        <router-link class="link" :to="{ name: 'login' }">here</router-link>
+      </p>
+      <button class="btn-sign-in">Register new account</button>
     </form>
   </div>
 </template>
@@ -52,8 +58,8 @@ export default defineComponent({
 .section-input {
   margin: 0 1em 2em 1em;
 }
-.section-sign-in {
-  margin: 0 1em .5em 1em;
+.info-link{
+  margin: 0 0 0.5em 1em;
 }
 
 input {
@@ -66,8 +72,7 @@ label {
   display: inline-block;
   font-size: 24px;
 }
-
-button {
+.btn-sign-in {
   width: 50%;
   padding: 0.75em;
   margin-left: 1em;
