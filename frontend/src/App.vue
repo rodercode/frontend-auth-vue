@@ -1,4 +1,7 @@
 <template>
+  <header class="bannar">
+    <h1>Booksters website</h1>
+  </header>
   <nav>
     <router-link :to="{ name: 'login' }">Login</router-link> |
     <router-link :to="{ name: 'register' }">Sign Up</router-link> |
@@ -11,13 +14,12 @@
 
 <style lang="scss">
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
 }
-
+header {
+  background-color: grey;
+  padding: 2.5em;
+}
 nav {
   padding: 30px;
 
