@@ -7,6 +7,7 @@
       <section class="section-input">
         <label class="label-username">Username</label>
         <input
+          v-model="username"
           class="input-username"
           placeholder="Type your username..."
           type="username"
@@ -16,6 +17,7 @@
       <section class="section-input">
         <label class="label-password">Password</label>
         <input
+          v-model="password"
           class="input-password"
           placeholder="Enter a password..."
           type="password"
@@ -27,8 +29,10 @@
         <router-link class="link" :to="{ name: 'login' }">here</router-link>
       </p>
       <div class="container-btns">
-        <button class="btn">Register new account</button>
-        <button @click="$router.push('/guest')" class="btn">Proceed as guest user</button>
+        <button class="btn">Sign in</button>
+        <button @click="$router.push('/guest')" class="btn">
+          Proceed as guest user
+        </button>
       </div>
     </form>
   </div>
@@ -36,11 +40,16 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import VueRouter from 'vue-router';
-
+import VueRouter from "vue-router";
 
 export default defineComponent({
   name: "RegisterView",
+  data() {
+    return {
+      username: "",
+      password: "",
+    };
+  },
 });
 </script>
 
@@ -78,7 +87,7 @@ label {
   font-size: 24px;
 }
 
-.container-btns{
+.container-btns {
   display: flex;
 }
 .btn {
