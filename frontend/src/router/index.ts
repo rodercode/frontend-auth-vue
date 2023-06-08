@@ -4,7 +4,6 @@ import LoginView from "@/views/LoginView.vue";
 import GuestView from "@/views/GuestView.vue";
 import UserView from "@/views/UserView.vue";
 import AdminView from "@/views/AdminView.vue";
-
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/login",
