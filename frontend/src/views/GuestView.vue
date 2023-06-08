@@ -6,18 +6,23 @@
       type="text"
       v-model="userInput"
     />
-    <table class="table-book-list">
-      <tr>
-        <th>Book title</th>
-        <th>Book author</th>
-        <th>Availability</th>
-      </tr>
-      <tr v-for="book in displayBooks" :key="book.title">
-        <td>{{ book.title }}</td>
-        <td>{{ book.author }}</td>
-        <td>{{ book.quantity }}</td>
-      </tr>
-    </table>
+    <div v-if="bookList.length !== 0">
+      <table class="table-book-list">
+        <tr>
+          <th>Book title</th>
+          <th>Book author</th>
+          <th>Availability</th>
+        </tr>
+        <tr v-for="book in displayBooks" :key="book.title">
+          <td>{{ book.title }}</td>
+          <td>{{ book.author }}</td>
+          <td>{{ book.quantity }}</td>
+        </tr>
+      </table>
+    </div>
+    <div v-else>
+      <h3>Loading books....</h3>
+    </div>
   </div>
 </template>
 <script lang="ts">
