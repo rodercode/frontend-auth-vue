@@ -12,7 +12,7 @@
         <th>Book author</th>
         <th>Availability</th>
       </tr>
-      <tr v-for="book in bookList" :key="book.title">
+      <tr v-for="book in currentBooks" :key="book.title">
         <td>{{ book.title }}</td>
         <td>{{ book.author }}</td>
         <td>{{ book.quantity }}</td>
@@ -32,16 +32,16 @@ export default defineComponent({
     return {
       userInput: "",
       bookList: [] as Book[],
-      book: {} as Book,
+      displayBooks: [] as Book[],
     };
   },
   async mounted() {
     this.bookList = await fetchService.getBooks();
+    this.displayBooks = this.bookList;
   },
   watch: {
     userInput() {
-      const books = this.bookList;
-      this.bookList = books.filter((book) => {
+      this.displayBooks = this.bookList.filter((book) => {
         book.title.includes(this.userInput);
       });
     },
