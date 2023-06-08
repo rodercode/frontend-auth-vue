@@ -39,6 +39,10 @@ export default defineComponent({
   margin: 0 4em;
 }
 
+.input-search:focus::placeholder {
+  color: transparent;
+}
+
 .input-search {
   font-size: 18px;
   padding: 1em 1em 0.75em 1em;
