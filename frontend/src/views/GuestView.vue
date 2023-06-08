@@ -38,6 +38,7 @@ export default defineComponent({
       userInput: "",
       bookList: [] as Book[],
       displayBooks: [] as Book[],
+      timer: 0,
     };
   },
   async mounted() {
@@ -46,6 +47,15 @@ export default defineComponent({
   },
   watch: {
     userInput() {
+      clearTimeout(this.timer);
+      this.timer = setTimeout(() => {
+        this.renderBooks();
+        console.log("rending");
+      }, 1000);
+    },
+  },
+  methods: {
+    renderBooks() {
       this.displayBooks = this.bookList.filter((book) =>
         book.title.includes(this.userInput)
       );
