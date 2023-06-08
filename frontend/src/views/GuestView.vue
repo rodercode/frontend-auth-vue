@@ -41,9 +41,9 @@ export default defineComponent({
   },
   watch: {
     userInput() {
-      this.displayBooks = this.bookList.filter((book) => {
-        book.title.includes(this.userInput);
-      });
+      this.displayBooks = this.bookList.filter((book) =>
+        book.title.includes(this.userInput)
+      );
     },
   },
 });
