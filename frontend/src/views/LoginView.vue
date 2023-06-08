@@ -25,8 +25,8 @@
       </section>
 
       <p class="info-link">
-        Already have an account? Sign in
-        <router-link class="link" :to="{ name: 'login' }">here</router-link>
+        Don't have an account? Sign up
+        <router-link class="link" :to="{ name: 'register' }">here</router-link>
       </p>
       <div class="container-btns">
         <button @click="handleLogin" class="btn">Sign in</button>

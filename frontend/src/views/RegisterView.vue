@@ -7,6 +7,7 @@
       <section class="section-input">
         <label class="label-username">Username</label>
         <input
+          v-model="consumer.username"
           class="input-username"
           placeholder="Type your username..."
           type="username"
@@ -16,6 +17,7 @@
       <section class="section-input">
         <label class="label-password">Password</label>
         <input
+          v-model="consumer.password"
           class="input-password"
           placeholder="Enter a password..."
           type="password"
@@ -26,22 +28,42 @@
         Already have an account? Sign in
         <router-link class="link" :to="{ name: 'login' }">here</router-link>
       </p>
-      <button class="btn-sign-in">Register new account</button>
+      <div class="container-btns">
+       
+      </div>
     </form>
+    <button @click="handleButton" class="btn">Sign in</button>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import VueRouter from "vue-router";
+import { Consumer } from "../model/consumer";
+import authService from "@/service/authService";
 
 export default defineComponent({
   name: "RegisterView",
+  data() {
+    return {
+      consumer: {} as Consumer,
+    };
+  },
+  methods: {
+    handleButton() {
+      // this.handlePromise();
+    },
+    // async handlePromise() {
+    //   await authService.login(this.consumer);
+    //   console.log(this.consumer.username);
+    //   console.log(this.consumer.password);
+    // },
+  },
 });
 </script>
 
 <style scoped>
-.container-register {.container-book-list {
-}
+.container-register {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -59,7 +81,7 @@ export default defineComponent({
 .section-input {
   margin: 0 1em 2em 1em;
 }
-.info-link{
+.info-link {
   margin: 0 0 0.5em 1em;
 }
 
@@ -73,7 +95,11 @@ label {
   display: inline-block;
   font-size: 24px;
 }
-.btn-sign-in {
+
+.container-btns {
+  display: flex;
+}
+.btn {
   width: 50%;
   padding: 0.75em;
   margin-left: 1em;
