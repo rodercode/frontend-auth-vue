@@ -25,6 +25,7 @@ import { defineComponent } from "vue";
 import { Book } from "@/model/book";
 import axios from "axios";
 import fetchService from "@/service/fetchService";
+import { tSExpressionWithTypeArguments } from "@babel/types";
 export default defineComponent({
   name: "GuestView",
   data() {
@@ -39,7 +40,10 @@ export default defineComponent({
   },
   watch: {
     userInput() {
-      console.log(this.userInput);
+      const books = this.bookList;
+      this.bookList = books.filter((book) => {
+        book.title.includes(this.userInput);
+      });
     },
   },
 });
