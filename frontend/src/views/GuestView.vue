@@ -47,11 +47,7 @@ export default defineComponent({
   },
   watch: {
     userInput() {
-      clearTimeout(this.timer);
-      this.timer = setTimeout(() => {
-        this.renderBooks();
-        console.log("rending");
-      }, 1000);
+      this.renderTimer();
     },
   },
   methods: {
@@ -59,6 +55,13 @@ export default defineComponent({
       this.displayBooks = this.bookList.filter((book) =>
         book.title.includes(this.userInput)
       );
+    },
+    renderTimer() {
+      clearTimeout(this.timer);
+      this.timer = setTimeout(() => {
+        this.renderBooks();
+        console.log("rending");
+      }, 1000);
     },
   },
 });
