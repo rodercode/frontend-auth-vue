@@ -1,6 +1,11 @@
 <template>
   <div class="container-guest-view">
-    <input placeholder="Search book..." class="input-search" type="text" />
+    <input
+      placeholder="Search book..."
+      class="input-search"
+      type="text"
+      v-model="userInput"
+    />
     <table class="table-book-list">
       <tr>
         <th>Book title</th>
@@ -24,12 +29,18 @@ export default defineComponent({
   name: "GuestView",
   data() {
     return {
+      userInput: "",
       bookList: [] as Book[],
       book: {} as Book,
     };
   },
   async mounted() {
     this.bookList = await fetchService.getBooks();
+  },
+  watch: {
+    userInput() {
+      console.log(this.userInput);
+    },
   },
 });
 </script>
