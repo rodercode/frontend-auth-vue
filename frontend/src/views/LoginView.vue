@@ -43,6 +43,7 @@ import cacheService from "@/service/cacheService";
 import { defineComponent } from "vue";
 import VueRouter from "vue-router";
 import { Consumer } from "../model/consumer";
+import authService from "@/service/authService";
 
 export default defineComponent({
   name: "RegisterView",
@@ -53,7 +54,12 @@ export default defineComponent({
   },
   methods: {
     handleLogin() {
-      console.log("login button was pressed");
+      this.handlePromise();
+    },
+    async handlePromise() {
+      await authService.login(this.consumer);
+      console.log(this.consumer.username);
+      console.log(this.consumer.password);
     },
   },
 });

@@ -5,7 +5,7 @@ const AUTH_URL = "http://localhost:8000/auth";
 export default {
   login(consumer: Consumer) {
     axios
-      .post(AUTH_URL + "/register", consumer)
-      .then((res) => jwtService.getJwt(res.data));
+      .post(AUTH_URL + "/login", consumer)
+      .then((res) => jwtService.setJwt("jwt", res.data));
   },
 };
