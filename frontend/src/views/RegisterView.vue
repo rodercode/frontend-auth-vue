@@ -28,9 +28,7 @@
         Already have an account? Sign in
         <router-link class="link" :to="{ name: 'login' }">here</router-link>
       </p>
-      <div class="container-btns">
-       
-      </div>
+      <div class="container-btns"></div>
     </form>
     <button @click="handleButton" class="btn">Sign in</button>
   </div>
@@ -51,13 +49,16 @@ export default defineComponent({
   },
   methods: {
     handleButton() {
-      // this.handlePromise();
+      this.consumer.username = this.capitalizedFirstLetter(
+        this.consumer.username
+      );
+      authService.register(this.consumer);
     },
-    // async handlePromise() {
-    //   await authService.login(this.consumer);
-    //   console.log(this.consumer.username);
-    //   console.log(this.consumer.password);
-    // },
+    capitalizedFirstLetter(text: string) {
+      const firstLetter = text[0].toUpperCase();
+      const restOfLetters = text.slice(1).toLowerCase();
+      return firstLetter + restOfLetters;
+    },
   },
 });
 </script>

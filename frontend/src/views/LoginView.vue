@@ -29,12 +29,12 @@
         <router-link class="link" :to="{ name: 'register' }">here</router-link>
       </p>
       <div class="container-btns">
-        <button @click="handleLogin" class="btn">Sign in</button>
         <button @click="$router.push('/guest')" class="btn">
           Proceed as guest user
         </button>
       </div>
     </form>
+    <button @click="handleLogin" class="btn">Sign in</button>
   </div>
 </template>
 
@@ -54,12 +54,20 @@ export default defineComponent({
   },
   methods: {
     handleLogin() {
+      this.consumer.username = this.capitalizedFirstLetter(
+        this.consumer.username
+      );
       this.handlePromise();
     },
     async handlePromise() {
       await authService.login(this.consumer);
       console.log(this.consumer.username);
       console.log(this.consumer.password);
+    },
+    capitalizedFirstLetter(text: string) {
+      const firstLetter = text[0].toUpperCase();
+      const restOfLetters = text.slice(1).toLowerCase();
+      return firstLetter + restOfLetters;
     },
   },
 });
