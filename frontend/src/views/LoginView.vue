@@ -53,9 +53,7 @@ export default defineComponent({
   },
   methods: {
     handleLogin() {
-      cacheService.setLocal("username", this.consumer.username);
-      const username = cacheService.getLocal("username");
-      console.log(username);
+      console.log("login button was pressed");
     },
   },
 });
