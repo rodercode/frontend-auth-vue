@@ -29,12 +29,12 @@
         <router-link class="link" :to="{ name: 'login' }">here</router-link>
       </p>
       <div class="container-btns">
-        <button class="btn">Sign in</button>
         <button @click="$router.push('/guest')" class="btn">
           Proceed as guest user
         </button>
       </div>
     </form>
+    <button @click="handleLogin" class="btn">Sign in</button>
   </div>
 </template>
 
@@ -49,6 +49,12 @@ export default defineComponent({
       username: "",
       password: "",
     };
+  },
+  methods: {
+    handleLogin() {
+      console.log("username" + this.username);
+      console.log("password" + this.password);
+    },
   },
 });
 </script>
