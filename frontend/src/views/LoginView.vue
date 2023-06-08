@@ -7,7 +7,7 @@
       <section class="section-input">
         <label class="label-username">Username</label>
         <input
-          v-model="username"
+          v-model="consumer.username"
           class="input-username"
           placeholder="Type your username..."
           type="username"
@@ -17,7 +17,7 @@
       <section class="section-input">
         <label class="label-password">Password</label>
         <input
-          v-model="password"
+          v-model="consumer.password"
           class="input-password"
           placeholder="Enter a password..."
           type="password"
@@ -41,19 +41,19 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import VueRouter from "vue-router";
+import { Consumer } from "../model/consumer";
 
 export default defineComponent({
   name: "RegisterView",
   data() {
     return {
-      username: "",
-      password: "",
+      consumer: {} as Consumer,
     };
   },
   methods: {
     handleLogin() {
-      console.log("username" + this.username);
-      console.log("password" + this.password);
+      console.log("username: " + this.consumer.username);
+      console.log("password: " + this.consumer.password);
     },
   },
 });
