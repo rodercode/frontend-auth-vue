@@ -39,6 +39,7 @@
 </template>
 
 <script lang="ts">
+import cacheService from "@/service/cacheService";
 import { defineComponent } from "vue";
 import VueRouter from "vue-router";
 import { Consumer } from "../model/consumer";
@@ -52,8 +53,9 @@ export default defineComponent({
   },
   methods: {
     handleLogin() {
-      console.log("username: " + this.consumer.username);
-      console.log("password: " + this.consumer.password);
+      cacheService.setLocal("username", this.consumer.username);
+      const username = cacheService.getLocal("username");
+      console.log(username);
     },
   },
 });

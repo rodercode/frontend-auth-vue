@@ -1,9 +1,19 @@
 export default {
+  // Save data to local storage
   setLocal(key: string, data: any): void {
-    localStorage.setItem(key, JSON.stringify(data));
+    if (data !== undefined) {
+      localStorage.setItem(key, JSON.stringify(data));
+    }
   },
-  getLocal(ref: string) {
-    const item = localStorage.getItem(ref) || "{}";
-    return JSON.parse(item);
-  }
+
+  // Retrieve data from local storage
+  getLocal(key: string): string {
+    const data = localStorage.getItem(key) || "{}";
+    return JSON.parse(data);
+  },
+
+  // Clear local storage
+  clearLocal(key: string): void {
+    localStorage.setItem(key, JSON.stringify(""));
+  },
 };
