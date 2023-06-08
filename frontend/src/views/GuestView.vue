@@ -19,6 +19,7 @@
 import { defineComponent } from "vue";
 import { Book } from "@/model/book";
 import axios from "axios";
+import fetchService from "@/service/fetchService";
 export default defineComponent({
   name: "GuestView",
   data() {
@@ -27,15 +28,8 @@ export default defineComponent({
       book: {} as Book,
     };
   },
-  mounted() {
-    this.fetchBooks();
-  },
-  methods: {
-    async fetchBooks() {
-      const url = "http://localhost:8000/library/books";
-      const res = await axios.get(url);
-      this.bookList = res.data.books;
-    },
+  async mounted() {
+    this.bookList = await fetchService.getBooks();
   },
 });
 </script>
