@@ -7,45 +7,36 @@
         <th>Book author</th>
         <th>Availability</th>
       </tr>
-      <tr>
-        <td>Lorem, ipsum.</td>
-        <td>Lorem, ipsum.</td>
-        <td>2 left</td>
-      </tr>
-      <tr>
-        <td>Lorem, ipsum.</td>
-        <td>Lorem, ipsum.</td>
-        <td>2 left</td>
-      </tr>
-      <tr>
-        <td>Lorem, ipsum.</td>
-        <td>Lorem, ipsum.</td>
-        <td>Out of stock</td>
-      </tr>
-      <tr>
-        <td>Lorem, ipsum.</td>
-        <td>Lorem, ipsum.</td>
-        <td>2 left</td>
-      </tr>
-      <tr>
-        <td>Lorem, ipsum.</td>
-        <td>Lorem, ipsum.</td>
-        <td>Out of stock</td>
-      </tr>
-      <tr>
-        <td>Lorem, ipsum.</td>
-        <td>Lorem, ipsum.</td>
-        <td>2 left</td>
+      <tr v-for="book in bookList" :key="book.title">
+        <td>{{ book.title }}</td>
+        <td>{{ book.author }}</td>
+        <td>{{ book.quantity }}</td>
       </tr>
     </table>
   </div>
 </template>
-
 <script lang="ts">
 import { defineComponent } from "vue";
-
+import { Book } from "@/model/book";
+import axios from "axios";
 export default defineComponent({
   name: "GuestView",
+  data() {
+    return {
+      bookList: [] as Book[],
+      book: {} as Book,
+    };
+  },
+  mounted() {
+    this.fetchBooks();
+  },
+  methods: {
+    async fetchBooks() {
+      const url = "http://localhost:8000/library/books";
+      const res = await axios.get(url);
+      this.bookList = res.data.books;
+    },
+  },
 });
 </script>
 

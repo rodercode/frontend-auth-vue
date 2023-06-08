@@ -12,9 +12,13 @@
   <router-view />
 </template>
 
+<script lang="ts">
+import { defineComponent } from "vue";
+export default defineComponent({
+});
+</script>
+
 <style css-scoped lang="css">
-
-
 header {
   background-color: grey;
   color: #fff;
@@ -24,14 +28,5 @@ header {
 nav {
   text-align: center;
   padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
 }
 </style>
