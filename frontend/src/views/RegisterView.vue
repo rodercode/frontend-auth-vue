@@ -1,17 +1,19 @@
 <template>
   <div class="container-register">
-    <form class="form-register" v-on:submit.prevent="handleButton">
+
+     <form class="form-register" v-on:submit.prevent="handleButton">
       <header class="form-header">
         <h1>Register</h1>
       </header>
       <section class="section-input">
         <label class="label-username">Username</label>
-        <input
+        <BaseInput v-model="consumer.username" />
+        <!-- <input
           v-model="consumer.username"
           class="input"
           placeholder="Type your username..."
           type="username"
-        />
+        /> -->
       </section>
 
       <section class="section-input">
@@ -38,11 +40,13 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import VueRouter from "vue-router";
-import { Consumer } from "../model/consumer";
+import { Consumer } from "@/model/consumer";
 import authService from "@/service/authService";
+import BaseInput from "@/components/BaseInput.vue"
 
 export default defineComponent({
   name: "RegisterView",
+  components: {BaseInput },
   data() {
     return {
       consumer: {} as Consumer,
@@ -53,6 +57,7 @@ export default defineComponent({
     handleButton() {
       this.convertToLowerCase(this.consumer.username);
       this.handlePromise();
+      console.log(this.consumer.username);
     },
     async handlePromise() {
       this.msg = await authService.register(this.consumer);
