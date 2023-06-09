@@ -23,13 +23,15 @@
           type="password"
         />
       </section>
-
+      <div class="container-error-msg" v-if="error !== undefined">
+        <p class="error-msg">{{ error }}</p>
+      </div>
       <p class="info-link">
         Already have an account? Sign in
         <router-link class="link" :to="{ name: 'login' }">here</router-link>
       </p>
-      <button @click="handleButton" class="btn">Sign up</button>
     </form>
+    <button @click="handleButton" class="btn">Sign up</button>
   </div>
 </template>
 
@@ -44,16 +46,17 @@ export default defineComponent({
   data() {
     return {
       consumer: {} as Consumer,
+      error: "" as string | undefined,
     };
   },
   methods: {
     handleButton() {
-      this.handlePromise();
-      this.$router.push("/login");
-    },
-    handlePromise() {
       this.consumer.username = this.consumer.username.toLowerCase();
-      authService.register(this.consumer);
+      this.handlePromise();
+      // this.$router.push("/login");
+    },
+    async handlePromise() {
+      this.error = await authService.register(this.consumer);
     },
   },
 });
@@ -100,5 +103,11 @@ label {
   width: 50%;
   padding: 0.75em;
   margin-left: 1em;
+}
+
+.error-msg {
+  color: red;
+  margin: 0 1em 2em 2em;
+  font-size: 20px;
 }
 </style>

@@ -9,6 +9,11 @@ export default {
       .then((res) => jwtService.setJwt("jwt", res.data));
   },
   async register(consumer: Consumer) {
+    try {
       await axios.post(AUTH_URL + "/register", consumer);
+    } catch (e) {
+      console.log("error");
+      return "Account already exist!";
+    }
   },
 };
