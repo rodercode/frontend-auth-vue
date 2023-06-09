@@ -112,6 +112,10 @@ td {
   background: rgb(188, 185, 185);
 }
 
+p{
+  font-size: 30px;
+}
+
 a {
   text-decoration: none;
   font-size: 40px;
