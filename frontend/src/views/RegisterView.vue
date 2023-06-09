@@ -28,9 +28,8 @@
         Already have an account? Sign in
         <router-link class="link" :to="{ name: 'login' }">here</router-link>
       </p>
-      <div class="container-btns"></div>
+      <button @click="handleButton" class="btn">Sign up</button>
     </form>
-    <button @click="handleButton" class="btn">Sign in</button>
   </div>
 </template>
 
