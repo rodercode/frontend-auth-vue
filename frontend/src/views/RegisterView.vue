@@ -7,7 +7,7 @@
       </header>
       <section class="section-input">
         <label class="label-username">Username</label>
-        <BaseInput v-model="consumer.username" />
+        <BaseInput textType="password" v-model="consumer.username" />
         <!-- <input
           v-model="consumer.username"
           class="input"
