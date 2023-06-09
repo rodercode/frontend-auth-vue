@@ -1,6 +1,6 @@
 <template>
   <div class="container-register">
-    <form class="form-register">
+    <form class="form-register" v-on:submit.prevent="handleButton">
       <header class="form-header">
         <h1>Register</h1>
       </header>
@@ -23,15 +23,15 @@
           type="password"
         />
       </section>
-      <div class="container-error-msg" v-if="error !== undefined">
-        <p class="error-msg">{{ error }}</p>
+      <div class="container-error-msg" v-if="msg !== ''">
+        <p class="error-msg">{{ msg }}</p>
       </div>
       <p class="info-link">
         Already have an account? Sign in
         <router-link class="link" :to="{ name: 'login' }">here</router-link>
       </p>
+      <button class="btn">Sign up</button>
     </form>
-    <button @click="handleButton" class="btn">Sign up</button>
   </div>
 </template>
 
@@ -46,22 +46,16 @@ export default defineComponent({
   data() {
     return {
       consumer: {} as Consumer,
-      error: "" as string | undefined,
+      msg: "" as string | undefined,
     };
   },
   methods: {
     handleButton() {
       this.convertToLowerCase(this.consumer.username);
       this.handlePromise();
-      this.switchPage("login");
     },
     async handlePromise() {
-      this.error = await authService.register(this.consumer);
-    },
-    switchPage(path: string) {
-      if (this.error === "") {
-        this.$router.push("/" + path);
-      }
+      this.msg = await authService.register(this.consumer);
     },
     convertToLowerCase(username: string) {
       this.consumer.username = username.toLowerCase();
@@ -114,7 +108,7 @@ label {
 }
 
 .error-msg {
-  color: red;
+  color: black;
   margin: 0 1em 2em 2em;
   font-size: 20px;
 }

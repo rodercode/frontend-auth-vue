@@ -11,6 +11,7 @@ export default {
   async register(consumer: Consumer) {
     try {
       await axios.post(AUTH_URL + "/register", consumer);
+      return "Account successfully created";
     } catch (e) {
       return "Account already exist!";
     }
