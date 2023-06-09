@@ -54,21 +54,13 @@ export default defineComponent({
   },
   methods: {
     handleLogin() {
-      this.consumer.username = this.capitalizedFirstLetter(
-        this.consumer.username
-      );
       this.handlePromise();
       this.$router.push("/user");
     },
     async handlePromise() {
-      await authService.login(this.consumer);
+      this.consumer.username = this.consumer.username.toLowerCase();
       console.log(this.consumer.username);
-      console.log(this.consumer.password);
-    },
-    capitalizedFirstLetter(text: string) {
-      const firstLetter = text[0].toUpperCase();
-      const restOfLetters = text.slice(1).toLowerCase();
-      return firstLetter + restOfLetters;
+      await authService.login(this.consumer);
     },
   },
 });

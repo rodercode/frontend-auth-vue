@@ -8,9 +8,7 @@ export default {
       .post(AUTH_URL + "/login", consumer)
       .then((res) => jwtService.setJwt("jwt", res.data));
   },
-  register(consumer: Consumer) {
-    axios
-      .post(AUTH_URL + "/register", consumer)
-      .then((res) => console.log(res.data));
+  async register(consumer: Consumer) {
+      await axios.post(AUTH_URL + "/register", consumer);
   },
 };

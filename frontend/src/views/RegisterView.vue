@@ -48,16 +48,12 @@ export default defineComponent({
   },
   methods: {
     handleButton() {
-      this.consumer.username = this.capitalizedFirstLetter(
-        this.consumer.username
-      );
-      authService.register(this.consumer);
+      this.handlePromise();
       this.$router.push("/login");
     },
-    capitalizedFirstLetter(text: string) {
-      const firstLetter = text[0].toUpperCase();
-      const restOfLetters = text.slice(1).toLowerCase();
-      return firstLetter + restOfLetters;
+    handlePromise() {
+      this.consumer.username = this.consumer.username.toLowerCase();
+      authService.register(this.consumer);
     },
   },
 });
