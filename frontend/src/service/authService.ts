@@ -4,8 +4,13 @@ import { Consumer } from "@/model/consumer";
 const AUTH_URL = "http://localhost:8000/auth";
 export default {
   async login(consumer: Consumer) {
-    const res = await axios.post(AUTH_URL + "/login", consumer);
-    jwtService.setJwt("jwt", res.data);
+    try {
+      const res = await axios.post(AUTH_URL + "/login", consumer);
+      jwtService.setJwt("jwt", res.data);
+      return "Successfully";
+    } catch (e) {
+      return "Incorrect username or password";
+    }
   },
   async register(consumer: Consumer) {
     try {

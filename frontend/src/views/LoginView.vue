@@ -1,6 +1,6 @@
 <template>
   <div class="container-login">
-    <form class="form-login">
+    <form class="form-login" v-on:submit.prevent="handleButton">
       <header class="form-header">
         <h1>Login</h1>
       </header>
@@ -24,12 +24,16 @@
         />
       </section>
 
+      <div class="container-error-msg" v-if="msg !== 'Successfully'">
+        <p class="error-msg">{{ msg }}</p>
+      </div>
+
       <p class="info-link">
         Don't have an account? Sign up
         <router-link class="link" :to="{ name: 'register' }">here</router-link>
       </p>
       <div class="container-btns">
-        <button @click="handleLogin" class="btn">Sign in</button>
+        <button class="btn">Sign in</button>
         <button @click="$router.push('/guest')" class="btn">
           Proceed as guest user
         </button>
@@ -50,17 +54,26 @@ export default defineComponent({
   data() {
     return {
       consumer: {} as Consumer,
+      msg: ("" as string) || undefined,
     };
   },
   methods: {
-    handleLogin() {
+    handleButton() {
+      this.convertToLowerCase(this.consumer.username);
       this.handlePromise();
-      this.$router.push("/user");
     },
     async handlePromise() {
-      this.consumer.username = this.consumer.username.toLowerCase();
-      console.log(this.consumer.username);
-      await authService.login(this.consumer);
+      this.msg = await authService.login(this.consumer);
+    },
+    convertToLowerCase(username: string) {
+      this.consumer.username = username.toLowerCase();
+    },
+  },
+  watch: {
+    msg() {
+      if (this.msg === "Successfully") {
+        this.$router.push("/user");
+      }
     },
   },
 });
@@ -107,5 +120,11 @@ label {
   width: 50%;
   padding: 0.75em;
   margin-left: 1em;
+}
+
+.error-msg {
+  color: black;
+  margin: 0 1em 2em 2em;
+  font-size: 20px;
 }
 </style>
