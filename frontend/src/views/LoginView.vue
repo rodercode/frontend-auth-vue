@@ -58,6 +58,7 @@ export default defineComponent({
         this.consumer.username
       );
       this.handlePromise();
+      this.$router.push("/user");
     },
     async handlePromise() {
       await authService.login(this.consumer);
