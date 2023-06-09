@@ -52,6 +52,7 @@ export default defineComponent({
         this.consumer.username
       );
       authService.register(this.consumer);
+      this.$router.push("/login");
     },
     capitalizedFirstLetter(text: string) {
       const firstLetter = text[0].toUpperCase();
