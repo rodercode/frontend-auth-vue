@@ -8,7 +8,7 @@
         <label class="label-username">Username</label>
         <input
           v-model="consumer.username"
-          class="input-username"
+          class="input"
           placeholder="Type your username..."
           type="username"
         />
@@ -18,7 +18,7 @@
         <label class="label-password">Password</label>
         <input
           v-model="consumer.password"
-          class="input-password"
+          class="input"
           placeholder="Enter a password..."
           type="password"
         />
@@ -100,11 +100,6 @@ export default defineComponent({
 }
 .info-link {
   margin: 0 0 0.5em 1em;
-}
-
-input {
-  width: 100%;
-  padding: 1em;
 }
 
 label {

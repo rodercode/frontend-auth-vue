@@ -2,7 +2,7 @@
   <div class="container-guest-view">
     <input
       placeholder="Search book..."
-      class="input-search"
+      class="input input-search"
       type="text"
       v-model="userInput"
     />
@@ -69,10 +69,6 @@ export default defineComponent({
 <style scoped>
 .container-guest-view {
   margin: 0 4em;
-}
-
-.input-search:focus::placeholder {
-  color: transparent;
 }
 
 .input-search {

@@ -52,3 +52,12 @@ a:link {
   color: black;
   font-weight: 700;
 }
+
+.input {
+  width: 100%;
+  padding: 1em;
+}
+
+.input:focus::placeholder {
+  color: transparent;
+}
