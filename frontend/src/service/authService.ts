@@ -12,7 +12,6 @@ export default {
     try {
       await axios.post(AUTH_URL + "/register", consumer);
     } catch (e) {
-      console.log("error");
       return "Account already exist!";
     }
   },

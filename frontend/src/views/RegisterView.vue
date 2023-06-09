@@ -51,12 +51,20 @@ export default defineComponent({
   },
   methods: {
     handleButton() {
-      this.consumer.username = this.consumer.username.toLowerCase();
+      this.convertToLowerCase(this.consumer.username);
       this.handlePromise();
-      // this.$router.push("/login");
+      this.switchPage("login");
     },
     async handlePromise() {
       this.error = await authService.register(this.consumer);
+    },
+    switchPage(path: string) {
+      if (this.error === "") {
+        this.$router.push("/" + path);
+      }
+    },
+    convertToLowerCase(username: string) {
+      this.consumer.username = username.toLowerCase();
     },
   },
 });
