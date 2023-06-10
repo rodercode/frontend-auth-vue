@@ -1,28 +1,24 @@
 <template>
   <div class="container-register">
-
-     <form class="form-register" v-on:submit.prevent="handleButton">
+    <form class="form-register" v-on:submit.prevent="handleButton">
       <header class="form-header">
         <h1>Register</h1>
       </header>
       <section class="section-input">
         <label class="label-username">Username</label>
-        <BaseInput textType="password" v-model="consumer.username" />
-        <!-- <input
+        <BaseInput
+          textType="type"
+          placeholderValue="Enter username..."
           v-model="consumer.username"
-          class="input"
-          placeholder="Type your username..."
-          type="username"
-        /> -->
+        />
       </section>
 
       <section class="section-input">
         <label class="label-password">Password</label>
-        <input
+        <BaseInput
+          textType="password"
+          placeholderValue="Enter password..."
           v-model="consumer.password"
-          class="input"
-          placeholder="Enter a password..."
-          type="password"
         />
       </section>
       <div class="container-error-msg" v-if="msg !== ''">
@@ -42,11 +38,11 @@ import { defineComponent } from "vue";
 import VueRouter from "vue-router";
 import { Consumer } from "@/model/consumer";
 import authService from "@/service/authService";
-import BaseInput from "@/components/BaseInput.vue"
+import BaseInput from "@/components/BaseInput.vue";
 
 export default defineComponent({
   name: "RegisterView",
-  components: {BaseInput },
+  components: { BaseInput },
   data() {
     return {
       consumer: {} as Consumer,

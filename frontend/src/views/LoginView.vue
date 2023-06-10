@@ -6,29 +6,25 @@
       </header>
       <section class="section-input">
         <label class="label-username">Username</label>
-        <input
+        <BaseInput
+          textType="type"
+          placeholderValue="Enter username..."
           v-model="consumer.username"
-          class="input"
-          placeholder="Type your username..."
-          type="username"
-        />
-      </section>
+        />      </section>
 
       <section class="section-input">
         <label class="label-password">Password</label>
-        <input
+        <BaseInput
+          textType="password"
+          placeholderValue="Enter password..."
           v-model="consumer.password"
-          class="input"
-          placeholder="Enter a password..."
-          type="password"
-        />
-      </section>
+        />     </section>
 
       <div class="container-error-msg" v-if="msg !== 'Successfully'">
         <p class="error-msg">{{ msg }}</p>
       </div>
 
-      <p class="info-link">
+       <p class="info-link">
         Don't have an account? Sign up
         <router-link class="link" :to="{ name: 'register' }">here</router-link>
       </p>
@@ -49,8 +45,12 @@ import VueRouter from "vue-router";
 import { Consumer } from "../model/consumer";
 import authService from "@/service/authService";
 
+// Components
+import BaseInput from "@/components/BaseInput.vue";
+
 export default defineComponent({
   name: "RegisterView",
+  components:{BaseInput},
   data() {
     return {
       consumer: {} as Consumer,
