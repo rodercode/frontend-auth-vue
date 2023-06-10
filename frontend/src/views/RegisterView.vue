@@ -1,5 +1,5 @@
 <template>
-  <div class="container-register">
+  <div class="register">
     <BaseForm @sendUserDetails="registerUser" :header="header" :msg="msg" />
   </div>
 </template>
@@ -38,7 +38,7 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.container-register {
+.register {
   display: flex;
   justify-content: center;
   align-items: center;

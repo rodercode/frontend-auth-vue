@@ -27,7 +27,12 @@
       Already have an account? Sign in
       <router-link class="link" :to="{ name: 'login' }">here</router-link>
     </p>
-    <button class="btn">Sign up</button>
+    <div class="container-btns">
+      <button class="btn">Sign in</button>
+      <button @click="$router.push('/guest')" class="btn">
+        Proceed as guest user
+      </button>
+    </div>
   </form>
 </template>
 
@@ -39,7 +44,7 @@ export default defineComponent({
   components: { BaseInput },
   props: {
     header: String,
-    msg:String
+    msg: String,
   },
   data() {
     return {
