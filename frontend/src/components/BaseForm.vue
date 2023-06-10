@@ -28,7 +28,7 @@
       <router-link class="link" :to="{ name: 'login' }">here</router-link>
     </p>
     <div class="container-btns">
-      <button class="btn">Sign in</button>
+      <button class="btn">{{ btnText}}</button>
       <button @click="$router.push('/guest')" class="btn">
         Proceed as guest user
       </button>
@@ -45,6 +45,7 @@ export default defineComponent({
   props: {
     header: String,
     msg: String,
+    btnText:String    
   },
   data() {
     return {

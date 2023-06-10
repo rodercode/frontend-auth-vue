@@ -1,6 +1,11 @@
 <template>
   <div class="container">
-    <BaseForm @sendUserDetails="loginUser" :header="header" :msg="msg" />
+    <BaseForm
+      @sendUserDetails="loginUser"
+      :header="header"
+      :msg="msg"
+      :btnText ="btnText"
+    />
   </div>
 </template>
 
@@ -22,14 +27,15 @@ export default defineComponent({
       header: "Login",
       consumer: {} as Consumer,
       msg: ("" as string) || undefined,
+      btnText: "Sign in",
     };
   },
   methods: {
-    loginUser(consumer:Consumer) {
+    loginUser(consumer: Consumer) {
       this.convertToLowerCase(consumer.username);
-      this.handlePromise(consumer);
+      this.handleLogin(consumer);
     },
-    async handlePromise(consumer:Consumer) {
+    async handleLogin(consumer: Consumer) {
       this.msg = await authService.login(consumer);
     },
     convertToLowerCase(username: string) {

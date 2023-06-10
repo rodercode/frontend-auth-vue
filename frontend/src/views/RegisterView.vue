@@ -1,6 +1,11 @@
 <template>
   <div class="register">
-    <BaseForm @sendUserDetails="registerUser" :header="header" :msg="msg" />
+    <BaseForm
+      @sendUserDetails="registerUser"
+      :header="header"
+      :msg="msg"
+      :btnText="btnText"
+    />
   </div>
 </template>
 
@@ -20,10 +25,11 @@ export default defineComponent({
     return {
       header: "Register",
       msg: "" as string | undefined,
+      btnText: "Sign up",
     };
   },
   methods: {
-    async handlePromise(consumer: Consumer) {
+    async handleRegistration(consumer: Consumer) {
       this.msg = await authService.register(consumer);
     },
     convertToLowerCase(username: string) {
@@ -31,7 +37,7 @@ export default defineComponent({
     },
     registerUser(consumer: Consumer) {
       this.convertToLowerCase(consumer.username);
-      this.handlePromise(consumer);
+      this.handleRegistration(consumer);
     },
   },
 });
