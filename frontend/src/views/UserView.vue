@@ -23,7 +23,7 @@
               <a href="">-</a>
               <p>0</p>
               <a href="">+</a>
-              <button class="btn-order">order</button>
+              <BaseButton class="btn-order" :btn-text="btnText"  />              
             </div>
           </td>
         </tr>
@@ -39,14 +39,19 @@ import { defineComponent } from "vue";
 import { Book } from "@/model/book";
 import axios from "axios";
 import fetchService from "@/service/fetchService";
+
+// Components
+import BaseButton from "@/components/BaseButton.vue";
 export default defineComponent({
   name: "GuestView",
+  components:{BaseButton},
   data() {
     return {
       userInput: "",
       bookList: [] as Book[],
       displayBooks: [] as Book[],
       timer: 0,
+      btnText:"Order",
     };
   },
   async mounted() {
@@ -117,14 +122,6 @@ a {
   font-size: 40px;
   color: rgb(69, 67, 67);
 }
-.btn-order {
-  padding: 0.75em 2em;
-  border-radius: 8px;
-  border: 1px solid black;
-  background-color: grey;
-  color: #fff;
-}
-
 .container-place-order {
   display: flex;
   justify-content: space-between;

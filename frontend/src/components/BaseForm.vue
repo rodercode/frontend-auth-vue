@@ -27,7 +27,7 @@
     </div>
     <p class="info-link">
       Already have an account? Sign in
-      <router-link class="link" :to="{ name: 'login' }">here</router-link>
+      <router-link class="link" :to="{path}">here</router-link>
     </p>
     <div class="container-btns">
       <BaseButton class="btn" :btnText="btnText" />
@@ -51,6 +51,7 @@ export default defineComponent({
     header: String,
     msg: String,
     btnText: String,
+    path:String
   },
   data() {
     return {

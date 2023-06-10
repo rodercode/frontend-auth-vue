@@ -5,6 +5,7 @@
       :header="header"
       :msg="msg"
       :btnText ="btnText"
+      :path="path"
     />
   </div>
 </template>
@@ -28,6 +29,7 @@ export default defineComponent({
       consumer: {} as Consumer,
       msg: ("" as string) || undefined,
       btnText: "Sign in",
+      path:"/register"
     };
   },
   methods: {

@@ -5,6 +5,7 @@
       :header="header"
       :msg="msg"
       :btnText="btnText"
+      :path="path"
     />
   </div>
 </template>
@@ -26,6 +27,7 @@ export default defineComponent({
       header: "Register",
       msg: "" as string | undefined,
       btnText: "Sign up",
+      path:"/login"
     };
   },
   methods: {
