@@ -30,10 +30,12 @@
       <router-link class="link" :to="{ name: 'login' }">here</router-link>
     </p>
     <div class="container-btns">
-      <button class="btn">{{ btnText}}</button>
-      <button @click="$router.push('/guest')" class="btn">
-        Proceed as guest user
-      </button>
+      <BaseButton class="btn" :btnText="btnText" />
+      <BaseButton
+        class="btn"
+        btnText="Process as guest user"
+        @click="$router.push('/guest')"
+      />
     </div>
   </form>
 </template>
@@ -41,13 +43,14 @@
 <script>
 import { defineComponent } from "vue";
 import BaseInput from "@/components/BaseInput.vue";
+import BaseButton from "@/components/BaseButton.vue";
 
 export default defineComponent({
-  components: { BaseInput },
+  components: { BaseInput, BaseButton },
   props: {
     header: String,
     msg: String,
-    btnText:String    
+    btnText: String,
   },
   data() {
     return {
@@ -91,11 +94,6 @@ label {
 
 .container-btns {
   display: flex;
-}
-.btn {
-  width: 50%;
-  padding: 0.75em;
-  margin-left: 1em;
 }
 
 .error-msg {
