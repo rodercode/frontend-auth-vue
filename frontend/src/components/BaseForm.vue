@@ -6,6 +6,7 @@
     <section class="section-input">
       <label class="label-username">Username</label>
       <BaseInput
+        class="input"
         textType="type"
         placeholderValue="Enter username..."
         v-model="username"
@@ -15,6 +16,7 @@
     <section class="section-input">
       <label class="label-password">Password</label>
       <BaseInput
+        class="input"
         textType="password"
         placeholderValue="Enter password..."
         v-model="password"

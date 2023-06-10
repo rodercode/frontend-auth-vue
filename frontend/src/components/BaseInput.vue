@@ -1,13 +1,10 @@
 <template>
-  <div>
     <input
-      class="input"
       :type="textType"
       :placeholder="placeholderValue"
       :value="modelValue"
       @input="$emit('update:modelValue', $event.target.value)"
     />
-  </div>
 </template>
 
 <script lang="ts">
@@ -29,5 +26,14 @@ export default defineComponent({
 
 .input:focus::placeholder {
   color: transparent;
+}
+
+.input-search {
+  font-size: 18px;
+  padding: 1em 1em 0.75em 1em;
+  margin: 0 0 0.5em 2em;
+  border-radius: 8px;
+  border: 1px solid black;
+  width: 27%;
 }
 </style>

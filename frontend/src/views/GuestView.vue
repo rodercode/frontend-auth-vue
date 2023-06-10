@@ -1,9 +1,9 @@
 <template>
   <div class="container-guest-view">
-    <input
-      placeholder="Search book..."
-      class="input input-search"
-      type="text"
+    <BaseInput
+      class="input-search"
+      textType="type"
+      placeholderValue="Enter a book title..."
       v-model="userInput"
     />
     <div v-if="bookList.length !== 0">
@@ -30,8 +30,12 @@ import { defineComponent } from "vue";
 import { Book } from "@/model/book";
 import axios from "axios";
 import fetchService from "@/service/fetchService";
+
+// Components
+import BaseInput from "@/components/BaseInput.vue";
 export default defineComponent({
   name: "GuestView",
+  components: { BaseInput },
   data() {
     return {
       userInput: "",
@@ -69,15 +73,6 @@ export default defineComponent({
 <style scoped>
 .container-guest-view {
   margin: 0 4em;
-}
-
-.input-search {
-  font-size: 18px;
-  padding: 1em 1em 0.75em 1em;
-  margin: 0 0 0.5em 2em;
-  border-radius: 8px;
-  border: 1px solid black;
-  width: 27%;
 }
 
 table {
