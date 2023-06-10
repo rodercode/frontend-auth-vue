@@ -1,6 +1,8 @@
 <template>
   <div class="container-register">
-    <form class="form-register" v-on:submit.prevent="handleButton">
+    <BaseForm @sendData="receiveData" header="register" />
+
+    <!-- <form class="form-register" v-on:submit.prevent="handleButton">
       <header class="form-header">
         <h1>Register</h1>
       </header>
@@ -29,7 +31,7 @@
         <router-link class="link" :to="{ name: 'login' }">here</router-link>
       </p>
       <button class="btn">Sign up</button>
-    </form>
+    </form> -->
   </div>
 </template>
 
@@ -38,11 +40,13 @@ import { defineComponent } from "vue";
 import VueRouter from "vue-router";
 import { Consumer } from "@/model/consumer";
 import authService from "@/service/authService";
-import BaseInput from "@/components/BaseInput.vue";
+
+// Components
+import BaseForm from "@/components/BaseForm.vue";
 
 export default defineComponent({
   name: "RegisterView",
-  components: { BaseInput },
+  components: { BaseForm },
   data() {
     return {
       consumer: {} as Consumer,
@@ -60,6 +64,10 @@ export default defineComponent({
     },
     convertToLowerCase(username: string) {
       this.consumer.username = username.toLowerCase();
+    },
+    receiveData(data: Consumer) {
+      this.consumer.username = data.username;
+      this.consumer.password = data.password;
     },
   },
 });

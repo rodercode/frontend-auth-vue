@@ -1,25 +1,25 @@
-<!-- <template>
-  <form class="form" v-on:submit.prevent="handleButton">
+<template>
+  <form class="form" v-on:submit.prevent="submit">
     <header class="form-header">
+      <h1>{{ header }}</h1>
       <h1>{{ username }}</h1>
+      <h1>{{ password }}</h1>
     </header>
     <section class="section-input">
       <label class="label-username">Username</label>
-      <input
-        class="input"
-        placeholder="Type your username..."
-        type="username"
+      <BaseInput
+        textType="type"
+        placeholderValue="Enter username..."
         v-model="username"
       />
     </section>
 
     <section class="section-input">
       <label class="label-password">Password</label>
-      <input
-        
-        class="input"
-        placeholder="Enter a password..."
-        type="password"
+      <BaseInput
+        textType="password"
+        placeholderValue="Enter password..."
+        v-model="password"
       />
     </section>
     <div class="container-error-msg" v-if="msg !== ''">
@@ -35,17 +35,28 @@
 
 <script>
 import { defineComponent } from "vue";
+import BaseInput from "@/components/BaseInput.vue";
+
 export default defineComponent({
-    props:{
-        username:String,
-        password:String,
-
-
-
-
-    }
-
-})
+  components: { BaseInput },
+  props: {
+    header: String,
+  },
+  data() {
+    return {
+      username: "",
+      password: "",
+    };
+  },
+  methods: {
+    submit() {
+      this.$emit("sendData", {
+        username: this.username,
+        password: this.password,
+      });
+    },
+  },
+});
 </script>
 
 <style>
@@ -85,4 +96,4 @@ label {
   margin: 0 1em 2em 2em;
   font-size: 20px;
 }
-</style> -->
+</style>
