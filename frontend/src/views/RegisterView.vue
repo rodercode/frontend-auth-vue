@@ -1,6 +1,6 @@
 <template>
   <div class="container-register">
-    <BaseForm @sendData="receiveData" header="register" />
+    <BaseForm @sendUserDetails="registerUser" :header="header" :msg="msg" />
 
     <!-- <form class="form-register" v-on:submit.prevent="handleButton">
       <header class="form-header">
@@ -40,7 +40,6 @@ import { defineComponent } from "vue";
 import VueRouter from "vue-router";
 import { Consumer } from "@/model/consumer";
 import authService from "@/service/authService";
-
 // Components
 import BaseForm from "@/components/BaseForm.vue";
 
@@ -49,25 +48,20 @@ export default defineComponent({
   components: { BaseForm },
   data() {
     return {
-      consumer: {} as Consumer,
+      header: "Register",
       msg: "" as string | undefined,
     };
   },
   methods: {
-    handleButton() {
-      this.convertToLowerCase(this.consumer.username);
-      this.handlePromise();
-      console.log(this.consumer.username);
-    },
-    async handlePromise() {
-      this.msg = await authService.register(this.consumer);
+    async handlePromise(consumer:Consumer) {
+      this.msg = await authService.register(consumer);
     },
     convertToLowerCase(username: string) {
-      this.consumer.username = username.toLowerCase();
+      username.toLowerCase();
     },
-    receiveData(data: Consumer) {
-      this.consumer.username = data.username;
-      this.consumer.password = data.password;
+    registerUser(consumer: Consumer) {
+      this.convertToLowerCase(consumer.username);
+      this.handlePromise(consumer);
     },
   },
 });

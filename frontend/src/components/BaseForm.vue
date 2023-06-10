@@ -2,8 +2,6 @@
   <form class="form" v-on:submit.prevent="submit">
     <header class="form-header">
       <h1>{{ header }}</h1>
-      <h1>{{ username }}</h1>
-      <h1>{{ password }}</h1>
     </header>
     <section class="section-input">
       <label class="label-username">Username</label>
@@ -41,6 +39,7 @@ export default defineComponent({
   components: { BaseInput },
   props: {
     header: String,
+    msg:String
   },
   data() {
     return {
@@ -50,7 +49,7 @@ export default defineComponent({
   },
   methods: {
     submit() {
-      this.$emit("sendData", {
+      this.$emit("sendUserDetails", {
         username: this.username,
         password: this.password,
       });
