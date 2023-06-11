@@ -1,11 +1,12 @@
 import cacheService from "./cacheService";
+
 export default {
   // Save jwt in local storage
-  setJwt(key: string, token: string): void {
+  setJwt(key: string, token: Token): void {
     cacheService.setLocal(key, token);
   },
-  // Get jwt from local storage
-  getJwt(key: string): string {
+  // Get jwt from local storage'
+  getJwt(key: string): Token {
     return cacheService.getLocal(key);
   },
   //
@@ -18,7 +19,7 @@ export default {
     const token = this.getJwt("jwt");
 
     // Seprate three parts of jwt to a parts array
-    const parts = token.split(".");
+    const parts = token.accessToken.split(".");
 
     // Decode payload
     const payload = JSON.parse(atob(parts[1]));

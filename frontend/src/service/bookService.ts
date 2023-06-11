@@ -1,6 +1,7 @@
 import axios from "axios";
 import { Book } from "@/model/book";
 import jwtService from "./jwtService";
+import tokenAxios from "@/interceptor/tokenAxios";
 
 export default {
   async getBooks(): Promise<Book[]> {
@@ -10,7 +11,7 @@ export default {
   },
   async orderBooks(title: string, purchased: number) {
     const url = "http://localhost:8000/library/user/books";
-    await axios.post(url, { title: title, quantity: purchased });
+    await tokenAxios.post(url, { title: title, quantity: purchased });
     return "User has placed an order!";
   },
 };

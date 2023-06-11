@@ -51,6 +51,7 @@ import { defineComponent } from "vue";
 import { Book } from "@/model/book";
 import axios from "axios";
 import bookService from "@/service/bookService";
+import jwtService from "@/service/jwtService";
 
 // Components
 import BaseButton from "@/components/BaseButton.vue";
