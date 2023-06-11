@@ -20,21 +20,13 @@
           <td>{{ book.quantity }}</td>
           <td>
             <div class="container-place-order">
-              <BaseButton
-                class="btn-icon"
-                btn-text="-"
-                @click="handleButton"
-              />
-              <p>0</p>
-              <BaseButton
-                class="btn-icon"
-                btn-text="+"
-                @click="handleButton"
-              />
+              <BaseButton class="btn-icon" btn-text="-" @click="book.item--" />
+              <p>{{ book.item }}</p>
+              <BaseButton class="btn-icon" btn-text="+" @click="book.item++" />
               <BaseButton
                 class="btn-order"
                 btn-text="Order"
-                @customMethod="handleButton"
+                @click="placeOrder"
               />
             </div>
           </td>
@@ -63,10 +55,14 @@ export default defineComponent({
       bookList: [] as Book[],
       displayBooks: [] as Book[],
       timer: 0,
+      quantity: 0,
     };
   },
   async mounted() {
     this.bookList = await fetchService.getBooks();
+    for (let i = 0; i < this.bookList.length; i++) {
+      this.bookList[i].item = 0;
+    }
     this.displayBooks = this.bookList;
   },
   watch: {
@@ -75,8 +71,8 @@ export default defineComponent({
     },
   },
   methods: {
-    handleButton() {
-      console.log("Button was pressed");
+    placeOrder(item: string) {
+      console.log(item);
     },
     renderBooks() {
       this.displayBooks = this.bookList.filter((book) =>

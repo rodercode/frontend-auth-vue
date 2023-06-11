@@ -46,6 +46,7 @@ export default defineComponent({
   },
   async mounted() {
     this.bookList = await fetchService.getBooks();
+    
     this.displayBooks = this.bookList;
   },
   watch: {
