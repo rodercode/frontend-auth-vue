@@ -60,9 +60,7 @@ export default defineComponent({
   },
   async mounted() {
     this.bookList = await fetchService.getBooks();
-    for (let i = 0; i < this.bookList.length; i++) {
-      this.bookList[i].item = 0;
-    }
+    this.bookList.forEach((book) => (book.item = 0));
     this.displayBooks = this.bookList;
   },
   watch: {
