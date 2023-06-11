@@ -51,6 +51,7 @@ import { defineComponent } from "vue";
 import { Book } from "@/model/book";
 import axios from "axios";
 import bookService from "@/service/bookService";
+
 // Components
 import BaseButton from "@/components/BaseButton.vue";
 export default defineComponent({
@@ -75,9 +76,8 @@ export default defineComponent({
     },
   },
   methods: {
-    placeOrder(title: string, item: number) {
-      console.log("Book title: " + title);
-      console.log("Purchased: " + item);
+    async placeOrder(title: string, purchased: number) {
+      await bookService.orderBooks(title, purchased);
     },
     renderBooks() {
       this.displayBooks = this.bookList.filter((book) =>
