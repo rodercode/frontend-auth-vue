@@ -20,10 +20,22 @@
           <td>{{ book.quantity }}</td>
           <td>
             <div class="container-place-order">
-              <BaseButton class="btn-icon" btn-text="-" />
+              <BaseButton
+                class="btn-icon"
+                btn-text="-"
+                @click="handleButton"
+              />
               <p>0</p>
-              <BaseButton class="btn-icon" btn-text="+" />
-              <BaseButton class="btn-order" btn-text="Order" />
+              <BaseButton
+                class="btn-icon"
+                btn-text="+"
+                @click="handleButton"
+              />
+              <BaseButton
+                class="btn-order"
+                btn-text="Order"
+                @customMethod="handleButton"
+              />
             </div>
           </td>
         </tr>
@@ -63,6 +75,9 @@ export default defineComponent({
     },
   },
   methods: {
+    handleButton() {
+      console.log("Button was pressed");
+    },
     renderBooks() {
       this.displayBooks = this.bookList.filter((book) =>
         book.title.includes(this.userInput)

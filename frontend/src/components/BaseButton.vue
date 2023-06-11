@@ -8,11 +8,6 @@ export default defineComponent({
   props: {
     btnText: String,
   },
-  methods: {
-    handleButton() {
-      this.$emit("customMethod");
-    },
-  },
 });
 </script>
 
