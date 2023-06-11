@@ -29,8 +29,7 @@
 import { defineComponent } from "vue";
 import { Book } from "@/model/book";
 import axios from "axios";
-import fetchService from "@/service/fetchService";
-
+import bookService from "@/service/bookService";
 // Components
 import BaseInput from "@/components/BaseInput.vue";
 export default defineComponent({
@@ -45,8 +44,7 @@ export default defineComponent({
     };
   },
   async mounted() {
-    this.bookList = await fetchService.getBooks();
-
+    this.bookList = await bookService.getBooks();
     this.displayBooks = this.bookList;
   },
   watch: {

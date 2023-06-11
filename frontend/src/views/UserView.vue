@@ -50,8 +50,7 @@
 import { defineComponent } from "vue";
 import { Book } from "@/model/book";
 import axios from "axios";
-import fetchService from "@/service/fetchService";
-
+import bookService from "@/service/bookService";
 // Components
 import BaseButton from "@/components/BaseButton.vue";
 export default defineComponent({
@@ -66,7 +65,7 @@ export default defineComponent({
     };
   },
   async created() {
-    this.bookList = await fetchService.getBooks();
+    this.bookList = await bookService.getBooks();
     this.bookList.forEach((book) => (book.purchased = 0));
     this.displayBooks = this.bookList;
   },
@@ -78,7 +77,7 @@ export default defineComponent({
   methods: {
     placeOrder(title: string, item: number) {
       console.log("Book title: " + title);
-      console.log("Quantity: " + item);
+      console.log("Purchased: " + item);
     },
     renderBooks() {
       this.displayBooks = this.bookList.filter((book) =>
