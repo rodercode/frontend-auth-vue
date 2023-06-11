@@ -32,4 +32,12 @@ export default defineComponent({
   background-color: grey;
   color: #fff;
 }
+
+.btn-icon {
+  font-size: 25px;
+  padding: 0.25em;
+  background: grey;
+  color: #fff;
+  border: 1px solid black;
+}
 </style>

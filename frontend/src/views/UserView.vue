@@ -20,10 +20,10 @@
           <td>{{ book.quantity }}</td>
           <td>
             <div class="container-place-order">
-              <a href="">-</a>
+              <BaseButton class="btn-icon" btn-text="-" />
               <p>0</p>
-              <a href="">+</a>
-              <BaseButton class="btn-order" :btn-text="btnText"  />              
+              <BaseButton class="btn-icon" btn-text="+" />
+              <BaseButton class="btn-order" btn-text="Order" />
             </div>
           </td>
         </tr>
@@ -44,14 +44,13 @@ import fetchService from "@/service/fetchService";
 import BaseButton from "@/components/BaseButton.vue";
 export default defineComponent({
   name: "GuestView",
-  components:{BaseButton},
+  components: { BaseButton },
   data() {
     return {
       userInput: "",
       bookList: [] as Book[],
       displayBooks: [] as Book[],
       timer: 0,
-      btnText:"Order",
     };
   },
   async mounted() {
@@ -113,7 +112,7 @@ td {
   background: rgb(188, 185, 185);
 }
 
-p{
+p {
   font-size: 30px;
 }
 
