@@ -1,12 +1,15 @@
 <template>
   <div class="container">
-    <BaseForm
-      @sendUserDetails="loginUser"
-      :header="header"
-      :msg="msg"
-      :btnText ="btnText"
-      :path="path"
-    />
+    <BaseHeader />
+    <div class="login">
+      <BaseForm
+        @sendUserDetails="handleLoginButton"
+        :header="header"
+        :msg="msg"
+        :btnText="btnText"
+        :path="path"
+      />
+    </div>
   </div>
 </template>
 
@@ -19,25 +22,27 @@ import authService from "@/service/authService";
 
 // Components
 import BaseForm from "@/components/BaseForm.vue";
+import BaseHeader from "@/components/BaseHeader.vue";
 
 export default defineComponent({
   name: "RegisterView",
-  components: { BaseForm },
+  components: { BaseForm, BaseHeader },
   data() {
     return {
       header: "Login",
       consumer: {} as Consumer,
       msg: ("" as string) || undefined,
       btnText: "Sign in",
-      path:"/register"
+      path: "/register",
+      test: this.variable,
     };
   },
   methods: {
-    loginUser(consumer: Consumer) {
+    handleLoginButton(consumer: Consumer) {
       this.convertToLowerCase(consumer.username);
-      this.handleLogin(consumer);
+      this.handlePromise(consumer);
     },
-    async handleLogin(consumer: Consumer) {
+    async handlePromise(consumer: Consumer) {
       this.msg = await authService.login(consumer);
     },
     convertToLowerCase(username: string) {
@@ -55,9 +60,10 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.container {
+.login {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 4em;
 }
 </style>

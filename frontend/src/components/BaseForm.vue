@@ -27,7 +27,7 @@
     </div>
     <p class="info-link">
       Already have an account? Sign in
-      <router-link class="link" :to="{path}">here</router-link>
+      <router-link class="link" :to="{ path }">here</router-link>
     </p>
     <div class="container-btns">
       <BaseButton class="btn btn-form" :btnText="btnText" />
@@ -42,6 +42,8 @@
 
 <script>
 import { defineComponent } from "vue";
+
+// Components
 import BaseInput from "@/components/BaseInput.vue";
 import BaseButton from "@/components/BaseButton.vue";
 
@@ -51,7 +53,7 @@ export default defineComponent({
     header: String,
     msg: String,
     btnText: String,
-    path:String
+    path: String,
   },
   data() {
     return {
@@ -64,6 +66,7 @@ export default defineComponent({
       this.$emit("sendUserDetails", {
         username: this.username,
         password: this.password,
+        isOnline: true,
       });
     },
   },

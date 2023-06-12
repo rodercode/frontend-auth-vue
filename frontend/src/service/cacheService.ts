@@ -1,6 +1,6 @@
 export default {
   // Save data to local storage
-  setLocal(key: string, data: Token): void {
+  setLocal(key: string, data: any): void {
     if (data !== undefined) {
       localStorage.setItem(key, JSON.stringify(data));
     }

@@ -1,12 +1,15 @@
 <template>
-  <div class="register">
-    <BaseForm
-      @sendUserDetails="registerUser"
-      :header="header"
-      :msg="msg"
-      :btnText="btnText"
-      :path="path"
-    />
+  <div class="container">
+    <BaseHeader />
+    <div class="register">
+      <BaseForm
+        @sendUserDetails="registerUser"
+        :header="header"
+        :msg="msg"
+        :btnText="btnText"
+        :path="path"
+      />
+    </div>
   </div>
 </template>
 
@@ -18,16 +21,17 @@ import authService from "@/service/authService";
 
 // Components
 import BaseForm from "@/components/BaseForm.vue";
+import BaseHeader from "@/components/BaseHeader.vue";
 
 export default defineComponent({
   name: "RegisterView",
-  components: { BaseForm },
+  components: { BaseForm, BaseHeader },
   data() {
     return {
       header: "Register",
       msg: "" as string | undefined,
       btnText: "Sign up",
-      path:"/login"
+      path: "/login",
     };
   },
   methods: {
@@ -50,5 +54,6 @@ export default defineComponent({
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 4em;
 }
 </style>

@@ -1,48 +1,51 @@
 <template>
-  <div class="container-guest-view">
-    <input
-      placeholder="Search book..."
-      class="input input-search"
-      type="text"
-      v-model="userInput"
-    />
-    <div v-if="bookList.length !== 0">
-      <table class="table-book-list">
-        <tr>
-          <th>Book title</th>
-          <th>Book author</th>
-          <th>Availability</th>
-          <th>Order</th>
-        </tr>
-        <tr v-for="book in displayBooks" :key="book.title">
-          <td>{{ book.title }}</td>
-          <td>{{ book.author }}</td>
-          <td>{{ book.quantity }}</td>
-          <td>
-            <div class="container-place-order">
-              <BaseButton
-                class="btn btn-icon"
-                btn-text="-"
-                @click="book.purchased--"
-              />
-              <p>{{ book.purchased }}</p>
-              <BaseButton
-                class="btn btn-icon"
-                btn-text="+"
-                @click="book.purchased++"
-              />
-              <BaseButton
-                class="btn btn-order"
-                btn-text="Order"
-                @click="placeOrder(book.title, book.purchased)"
-              />
-            </div>
-          </td>
-        </tr>
-      </table>
-    </div>
-    <div v-else>
-      <h3>Loading books....</h3>
+  <div class="container">
+    <BaseHeader />
+    <div class="user-view">
+      <input
+        placeholder="Search book..."
+        class="input input-search"
+        type="text"
+        v-model="userInput"
+      />
+      <div v-if="bookList.length !== 0">
+        <table class="table-book-list">
+          <tr>
+            <th>Book title</th>
+            <th>Book author</th>
+            <th>Availability</th>
+            <th>Order</th>
+          </tr>
+          <tr v-for="book in displayBooks" :key="book.title">
+            <td>{{ book.title }}</td>
+            <td>{{ book.author }}</td>
+            <td>{{ book.quantity }}</td>
+            <td>
+              <div class="container-place-order">
+                <BaseButton
+                  class="btn btn-icon"
+                  btn-text="-"
+                  @click="book.purchased--"
+                />
+                <p>{{ book.purchased }}</p>
+                <BaseButton
+                  class="btn btn-icon"
+                  btn-text="+"
+                  @click="book.purchased++"
+                />
+                <BaseButton
+                  class="btn btn-order"
+                  btn-text="Order"
+                  @click="placeOrder(book.title, book.purchased)"
+                />
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div v-else>
+        <h3>Loading books....</h3>
+      </div>
     </div>
   </div>
 </template>
@@ -55,9 +58,10 @@ import jwtService from "@/service/jwtService";
 
 // Components
 import BaseButton from "@/components/BaseButton.vue";
+import BaseHeader from "@/components/BaseHeader.vue";
 export default defineComponent({
   name: "GuestView",
-  components: { BaseButton },
+  components: { BaseButton, BaseHeader },
   data() {
     return {
       userInput: "",
@@ -81,7 +85,7 @@ export default defineComponent({
       await bookService.orderBooks(title, purchased);
       this.refreshPage();
     },
-    refreshPage(){
+    refreshPage() {
       this.$router.go(0);
     },
     renderBooks() {
@@ -101,8 +105,9 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.container-guest-view {
-  margin: 0 4em;
+
+.user-view {
+  margin: 4em 4em 0em 4em;
 }
 
 .input-search {
