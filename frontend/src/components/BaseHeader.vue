@@ -4,15 +4,28 @@
     <h1>Booksters website</h1>
     <div class="sign-in-profile">
       <p>Browsing as user username</p>
-      <BaseButton class="btn btn-sign-out" btnText="Sign out" />
+      <BaseButton
+        class="btn btn-sign-out"
+        btnText="Sign out"
+        @click="handleLogoutButton"
+      />
     </div>
   </header>
 </template>
 
 <script>
+import jwtService from "@/service/jwtService";
+
+//Components
 import BaseButton from "./BaseButton.vue";
 export default {
   components: { BaseButton },
+  methods: {
+    handleLogoutButton() {
+      jwtService.deleteJwt();
+      this.$router.push("/login");
+    },
+  },
 };
 </script>
 

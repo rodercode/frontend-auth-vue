@@ -23,6 +23,7 @@ import authService from "@/service/authService";
 // Components
 import BaseForm from "@/components/BaseForm.vue";
 import BaseHeader from "@/components/BaseHeader.vue";
+import jwtService from "@/service/jwtService";
 
 export default defineComponent({
   name: "RegisterView",

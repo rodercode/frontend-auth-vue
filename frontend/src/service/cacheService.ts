@@ -1,6 +1,6 @@
 export default {
   // Save data to local storage
-  setLocal(key: string, data: any): void {
+  setLocal(key: string, data: Token): void {
     if (data !== undefined) {
       localStorage.setItem(key, JSON.stringify(data));
     }
@@ -13,7 +13,7 @@ export default {
   },
 
   // Clear local storage
-  clearLocal(key: string): void {
-    localStorage.setItem(key, JSON.stringify(""));
+  clearLocal(): void {
+    localStorage.clear();
   },
 };

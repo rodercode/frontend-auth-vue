@@ -10,8 +10,8 @@ export default {
     return cacheService.getLocal(key);
   },
   //
-  deleteJwt(key: string): void {
-    cacheService.clearLocal(key);
+  deleteJwt(): void {
+    cacheService.clearLocal();
   },
 
   getProp(propName: string): string {

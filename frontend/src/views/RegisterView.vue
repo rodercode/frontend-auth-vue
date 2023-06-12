@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <BaseHeader class="header-offline-state"/>
+    <BaseHeader class="header-offline-state" />
     <div class="register">
       <BaseForm
         @sendUserDetails="registerUser"
