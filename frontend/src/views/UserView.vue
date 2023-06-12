@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <BaseHeader />
+    <BaseHeader class="header-online-state" />
     <div class="user-view">
       <input
         placeholder="Search book..."
