@@ -8,7 +8,7 @@
         <BaseButton
           class="btn btn-sign-out"
           btnText="Sign out"
-          @click="handleButton"
+          @click="logOut"
         />
       </div>
     </header>
@@ -25,6 +25,7 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import jwtService from "./service/jwtService";
 
 //Components
 import BaseButton from "./components/BaseButton.vue";
@@ -33,11 +34,21 @@ export default defineComponent({
   name: "App",
   components: { BaseButton },
   data() {
-    return {};
+    return {
+      isOnline: false,
+    };
+  },
+  mounted() {
+    const jwt = jwtService.getJwt("jwt").accessToken;
+    if (jwt === undefined) {
+      console.log("No user is logged in");
+    } else {
+      console.log("User is log in");
+    }
   },
   methods: {
-    handleButton() {
-      console.log("Sign out button was pressed");
+    logOut() {
+      jwtService.deleteJwt("jwt");
     },
   },
 });
