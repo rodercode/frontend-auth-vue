@@ -21,18 +21,18 @@
           <td>
             <div class="container-place-order">
               <BaseButton
-                class="btn-icon"
+                class="btn btn-icon"
                 btn-text="-"
                 @click="book.purchased--"
               />
               <p>{{ book.purchased }}</p>
               <BaseButton
-                class="btn-icon"
+                class="btn btn-icon"
                 btn-text="+"
                 @click="book.purchased++"
               />
               <BaseButton
-                class="btn-order"
+                class="btn btn-order"
                 btn-text="Order"
                 @click="placeOrder(book.title, book.purchased)"
               />

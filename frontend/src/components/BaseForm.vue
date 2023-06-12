@@ -30,9 +30,9 @@
       <router-link class="link" :to="{path}">here</router-link>
     </p>
     <div class="container-btns">
-      <BaseButton class="btn" :btnText="btnText" />
+      <BaseButton class="btn btn-form" :btnText="btnText" />
       <BaseButton
-        class="btn"
+        class="btn btn-form"
         btnText="Process as guest user"
         @click="$router.push('/gueusst')"
       />

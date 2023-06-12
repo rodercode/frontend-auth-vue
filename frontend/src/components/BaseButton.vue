@@ -12,8 +12,14 @@ export default defineComponent({
 </script>
 
 <style scoped>
-/*Style for form buttons  */
+/* General style button */
 .btn {
+  border-radius: 8px;
+  border: 1px solid black;
+}
+
+/*Style for form buttons  */
+.btn-form {
   width: 50%;
   padding: 0.75em;
   margin-left: 1em;
@@ -22,8 +28,6 @@ export default defineComponent({
 /* Styling for order button */
 .btn-order {
   padding: 0.75em 2em;
-  border-radius: 8px;
-  border: 1px solid black;
   background-color: grey;
   color: #fff;
 }
@@ -34,14 +38,11 @@ export default defineComponent({
   padding: 0.25em;
   background: grey;
   color: #fff;
-  border: 1px solid black;
 }
 
 /* Styling for Sign out button at the top corner */
 .btn-sign-out {
   font-size: 35px;
   padding: 0.1em 0.4em;
-  border-radius: 8px;
-  border: 1px solid black;
 }
 </style>

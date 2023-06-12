@@ -6,7 +6,7 @@
       <div>
         <p>Browsing as user username</p>
         <BaseButton
-          class="btn-sign-out"
+          class="btn btn-sign-out"
           btnText="Sign out"
           @click="handleButton"
         />
