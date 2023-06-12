@@ -28,11 +28,20 @@ export default defineComponent({
   color: #fff;
 }
 
+/* Styling for plus and minus icon buttons */
 .btn-icon {
   font-size: 25px;
   padding: 0.25em;
   background: grey;
   color: #fff;
+  border: 1px solid black;
+}
+
+/* Styling for Sign out button at the top corner */
+.btn-sign-out {
+  font-size: 35px;
+  padding: 0.1em 0.4em;
+  border-radius: 8px;
   border: 1px solid black;
 }
 </style>

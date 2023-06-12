@@ -79,6 +79,10 @@ export default defineComponent({
   methods: {
     async placeOrder(title: string, purchased: number) {
       await bookService.orderBooks(title, purchased);
+      this.refreshPage();
+    },
+    refreshPage(){
+      this.$router.go(0);
     },
     renderBooks() {
       this.displayBooks = this.bookList.filter((book) =>
