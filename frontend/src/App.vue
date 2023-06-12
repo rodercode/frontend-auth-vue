@@ -47,8 +47,15 @@ export default defineComponent({
     }
   },
   methods: {
-    logOut() {
+    handleButton() {
+      this.logOutUser();
+      this.switchPage();
+    },
+    logOutUser() {
       jwtService.deleteJwt("jwt");
+    },
+    switchPage() {
+      this.$router.push("/login");
     },
   },
 });
