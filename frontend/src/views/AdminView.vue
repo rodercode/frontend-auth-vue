@@ -1,6 +1,10 @@
 <template>
   <div class="container">
-    <BaseHeader class="header-online-state" :username="consumer.username.toUpperCase()" :role="consumer.role" />
+    <BaseHeader
+      class="header-online-state"
+      :username="consumer.username.toUpperCase()"
+      :role="consumer.role"
+    />
     <div class="admin">
       <input
         placeholder="Search book..."
@@ -15,6 +19,7 @@
             <th>Book author</th>
             <th>Availability</th>
             <th>Order</th>
+            <th>Action</th>
           </tr>
           <tr v-for="book in displayBooks" :key="book.title">
             <td>{{ book.title }}</td>
@@ -36,6 +41,20 @@
                 <BaseButton
                   class="btn btn-order"
                   btn-text="Order"
+                  @click="placeOrder(book.title, book.purchased)"
+                />
+              </div>
+            </td>
+            <td>
+              <div class="container-btns-action">
+                <BaseButton
+                  class="btn btn-edit"
+                  btn-text="Edit"
+                  @click="placeOrder(book.title, book.purchased)"
+                />
+                <BaseButton
+                  class="btn btn-delete"
+                  btn-text="Delete"
                   @click="placeOrder(book.title, book.purchased)"
                 />
               </div>
@@ -68,8 +87,8 @@ export default defineComponent({
       bookList: [] as Book[],
       displayBooks: [] as Book[],
       timer: 0,
-      token: jwtService.getJwt('jwt'),
-      consumer: {username:"", role:""}
+      token: jwtService.getJwt("jwt"),
+      consumer: { username: "", role: "" },
     };
   },
   async created() {
@@ -81,9 +100,8 @@ export default defineComponent({
     userInput() {
       this.renderTimer();
     },
-  
   },
-  mounted(){
+  mounted() {
     this.consumer = consumerService.getConsumer(this.token);
   },
   methods: {
@@ -111,7 +129,6 @@ export default defineComponent({
 </script>
 
 <style scoped>
-
 .admin {
   margin: 4em 4em 0em 4em;
 }
@@ -157,5 +174,10 @@ a {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: .75em;
+}
+.container-btns-action{
+  display: flex;
+  gap: 1em;
 }
 </style>

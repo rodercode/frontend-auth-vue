@@ -27,9 +27,10 @@ export default defineComponent({
 
 /* Styling for order button */
 .btn-order {
-  padding: 0.75em 2em;
+  padding: 0.1em 0.4em;
   background-color: grey;
   color: #fff;
+  font-size:30px;
 }
 
 /* Styling for plus and minus icon buttons */
@@ -44,5 +45,19 @@ export default defineComponent({
 .btn-sign-out {
   font-size: 35px;
   padding: 0.1em 0.4em;
+}
+
+/* Styling action button */
+.btn-edit{
+  font-size:30px;
+  padding: 0.1em 0.4em;
+  background: grey;
+  color: #fff;
+}
+
+.btn-delete{
+  font-size:30px;
+  padding: 0.1em 0.4em;
+  background: rgb(197, 192, 192);
 }
 </style>

@@ -1,6 +1,10 @@
 <template>
   <div class="container">
-    <BaseHeader class="header-online-state" :username="consumer.username.toUpperCase()" :role="consumer.role" />
+    <BaseHeader
+      class="header-online-state"
+      :username="consumer.username.toUpperCase()"
+      :role="consumer.role"
+    />
     <div class="user">
       <input
         placeholder="Search book..."
@@ -154,5 +158,6 @@ a {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 0.75em;
 }
 </style>
