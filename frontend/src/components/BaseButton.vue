@@ -76,7 +76,12 @@ export default defineComponent({
 .btn-tab {
   font-size: 20px;
   padding: 1em 2.5em;
-  background-color:rgb(108, 104, 104);
   color: #fff;
+  background: rgb(197, 192, 192);
+}
+
+.btn-tab:disabled {
+  color: #fff;
+  background-color: rgb(80, 77, 77);
 }
 </style>

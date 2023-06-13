@@ -56,7 +56,7 @@ export default defineComponent({
       if (consumer.role === "USER") {
         this.$router.push("/user");
       } else if (consumer.role === "ADMIN") {
-        this.$router.push("/admin");
+        this.$router.push("/admin/books");
       }
     },
   },
