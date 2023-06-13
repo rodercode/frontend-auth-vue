@@ -22,7 +22,7 @@ export default {
   components: { BaseButton },
   methods: {
     handleLogoutButton() {
-      jwtService.deleteJwt();
+      jwtService.deleteJwt('jwt');
       this.$router.push("/login");
     },
   },

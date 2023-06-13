@@ -10,21 +10,14 @@ export default {
     return cacheService.getLocal(key);
   },
   //
-  deleteJwt(): void {
-    cacheService.clearLocal();
+  deleteJwt(key:string): void {
+    cacheService.setLocal(key, '');
   },
 
-  getProp(propName: string): string {
-    // get Token from local storage
-    const token = this.getJwt("jwt");
-
-    // Seprate three parts of jwt to a parts array
-    const parts = token.accessToken.split(".");
-
-    // Decode payload
-    const payload = JSON.parse(atob(parts[1]));
-
-    // return payload
-    return payload[propName];
+  getProp(token:Token) {
+     if (token.accessToken !== undefined) {
+       const parts = token.accessToken.split(".");
+       return JSON.parse(atob(parts[1]));
+     }
   },
 };
