@@ -4,7 +4,7 @@
     <h1>Booksters website</h1>
     <div class="sign-in-profile">
       <p>
-        Browsing as user <strong>{{ username }}</strong>
+        Browsing as <strong>{{ role }} {{ username }}</strong>
       </p>
       <BaseButton
         class="btn btn-sign-out"
@@ -24,6 +24,7 @@ export default {
   components: { BaseButton },
   props: {
     username: String,
+    role: String,
   },
   methods: {
     handleLogoutButton() {

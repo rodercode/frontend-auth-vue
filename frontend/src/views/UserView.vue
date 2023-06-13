@@ -1,7 +1,7 @@
 <template>
   <div class="container">
-    <BaseHeader class="header-online-state" :username="consumer.username" />
-    <div class="user-view">
+    <BaseHeader class="header-online-state" :username="consumer.username.toUpperCase()" :role="consumer.role" />
+    <div class="user">
       <input
         placeholder="Search book..."
         class="input input-search"
@@ -68,8 +68,8 @@ export default defineComponent({
       bookList: [] as Book[],
       displayBooks: [] as Book[],
       timer: 0,
-      token: jwtService.getJwt('jwt'),
-      consumer: {username:"", role:""}
+      token: jwtService.getJwt("jwt"),
+      consumer: { username: "", role: "" },
     };
   },
   async created() {
@@ -81,9 +81,8 @@ export default defineComponent({
     userInput() {
       this.renderTimer();
     },
-  
   },
-  mounted(){
+  mounted() {
     this.consumer = consumerService.getConsumer(this.token);
   },
   methods: {
@@ -111,11 +110,9 @@ export default defineComponent({
 </script>
 
 <style scoped>
-
-.user-view {
+.user {
   margin: 4em 4em 0em 4em;
 }
-
 .input-search {
   font-size: 18px;
   padding: 1em 1em 0.75em 1em;
