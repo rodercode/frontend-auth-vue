@@ -81,6 +81,10 @@ export default defineComponent({
 }
 .form-header {
   margin-bottom: 2em;
+  padding: 2em;
+  text-align: center;
+  background-color: grey;
+  color: #fff;
 }
 
 .section-input {
