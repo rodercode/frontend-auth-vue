@@ -48,18 +48,11 @@ export default defineComponent({
 }
 
 /* Styling action button */
-.btn-edit {
+.btn-action {
   font-size: 30px;
   padding: 0.1em 0.4em;
   background: grey;
   color: #fff;
-}
-
-/* Styling delete button */
-.btn-delete {
-  font-size: 30px;
-  padding: 0.1em 0.4em;
-  background: rgb(197, 192, 192);
 }
 
 /* Styling add book button */
@@ -79,7 +72,6 @@ export default defineComponent({
   color: #fff;
   background: rgb(197, 192, 192);
 }
-
 .btn-tab:disabled {
   color: #fff;
   background-color: rgb(80, 77, 77);

@@ -13,7 +13,6 @@
           type="text"
           v-model="userInput"
         />
-        <BaseButton class="btn btn-add-book" btn-text="Add new book" />
         <div class="container-btns-tab">
           <BaseButton
             class="btn-tab"
@@ -31,40 +30,19 @@
       <div v-if="bookList.length !== 0">
         <table class="table-book-list">
           <tr>
-            <th>Book title</th>
-            <th>Book author</th>
-            <th>Availability</th>
-            <th>Order</th>
+            <th>Username</th>
+            <th>Role</th>
+            <th>Purchases</th>
             <th>Action</th>
           </tr>
           <tr v-for="book in displayBooks" :key="book.title">
             <td>{{ book.title }}</td>
             <td>{{ book.author }}</td>
-            <td>{{ book.quantity }}</td>
-            <td>
-              <div class="container-place-order">
-                <BaseButton
-                  class="btn btn-icon"
-                  btn-text="-"
-                  @click="book.purchased--"
-                />
-                <p>{{ book.purchased }}</p>
-                <BaseButton
-                  class="btn btn-icon"
-                  btn-text="+"
-                  @click="book.purchased++"
-                />
-                <BaseButton
-                  class="btn btn-order"
-                  btn-text="Order"
-                  @click="placeOrder(book.title, book.purchased)"
-                />
-              </div>
-            </td>
+            <td>{{ book.quantity }} purchases</td>
             <td>
               <div class="container-btns-action">
-                <BaseButton class="btn btn-edit" btn-text="Edit" />
-                <BaseButton class="btn btn-delete" btn-text="Delete" />
+                <BaseButton class="btn btn-action" btn-text="Promote" />
+                <BaseButton class="btn btn-action" btn-text="Delete" />
               </div>
             </td>
           </tr>
@@ -191,6 +169,7 @@ a {
 }
 .container-btns-action {
   display: flex;
-  gap: 1em;
+  justify-content: center;
+  gap: 1.5em;
 }
 </style>

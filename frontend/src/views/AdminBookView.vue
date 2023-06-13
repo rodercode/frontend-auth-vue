@@ -63,8 +63,8 @@
             </td>
             <td>
               <div class="container-btns-action">
-                <BaseButton class="btn btn-edit" btn-text="Edit" />
-                <BaseButton class="btn btn-delete" btn-text="Delete" />
+                <BaseButton class="btn btn-action" btn-text="Edit" />
+                <BaseButton class="btn btn-action" btn-text="Delete" />
               </div>
             </td>
           </tr>
