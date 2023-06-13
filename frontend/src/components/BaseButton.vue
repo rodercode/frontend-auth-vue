@@ -30,7 +30,7 @@ export default defineComponent({
   padding: 0.1em 0.4em;
   background-color: grey;
   color: #fff;
-  font-size:30px;
+  font-size: 30px;
 }
 
 /* Styling for plus and minus icon buttons */
@@ -48,16 +48,35 @@ export default defineComponent({
 }
 
 /* Styling action button */
-.btn-edit{
-  font-size:30px;
+.btn-edit {
+  font-size: 30px;
   padding: 0.1em 0.4em;
   background: grey;
   color: #fff;
 }
 
-.btn-delete{
-  font-size:30px;
+/* Styling delete button */
+.btn-delete {
+  font-size: 30px;
   padding: 0.1em 0.4em;
   background: rgb(197, 192, 192);
+}
+
+/* Styling add book button */
+
+.btn-add-book {
+  font-size: 20px;
+  background: grey;
+  color: #fff;
+  padding: 0.75em 4em;
+  margin-bottom: 0.5em;
+}
+
+/* Styling tab button */
+.btn-tab {
+  font-size: 20px;
+  padding: 1em 2.5em;
+  background-color:rgb(108, 104, 104);
+  color: #fff;
 }
 </style>

@@ -6,12 +6,20 @@
       :role="consumer.role"
     />
     <div class="admin">
-      <input
-        placeholder="Search book..."
-        class="input input-search"
-        type="text"
-        v-model="userInput"
-      />
+      <div class="container-upper">
+        <input
+          placeholder="Search book..."
+          class="input input-search"
+          type="text"
+          v-model="userInput"
+        />
+        <BaseButton class="btn btn-add-book" btn-text="Add new book" />
+        <div class="container-btns-tab">
+          <BaseButton class="btn-tab" btn-text="Books" />
+          <BaseButton class="btn-tab" btn-text="Users" />
+        </div>
+      </div>
+
       <div v-if="bookList.length !== 0">
         <table class="table-book-list">
           <tr>
@@ -133,6 +141,11 @@ export default defineComponent({
   margin: 4em 4em 0em 4em;
 }
 
+.container-upper{
+  display: flex;
+  justify-content: space-between;
+}
+
 .input-search {
   font-size: 18px;
   margin: 0 0 0.5em 2em;
@@ -174,9 +187,9 @@ a {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: .75em;
+  gap: 0.75em;
 }
-.container-btns-action{
+.container-btns-action {
   display: flex;
   gap: 1em;
 }
