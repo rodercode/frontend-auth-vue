@@ -10,14 +10,12 @@ export default {
     return cacheService.getLocal(key);
   },
   //
-  deleteJwt(key:string): void {
-    cacheService.setLocal(key, '');
+  deleteJwt(key: string): void {
+    cacheService.setLocal(key, "");
   },
 
-  getProp(token:Token) {
-     if (token.accessToken !== undefined) {
-       const parts = token.accessToken.split(".");
-       return JSON.parse(atob(parts[1]));
-     }
+  decodeJwt(token: Token) {
+    const parts = token.accessToken.split(".");
+    return JSON.parse(atob(parts[1]));
   },
 };

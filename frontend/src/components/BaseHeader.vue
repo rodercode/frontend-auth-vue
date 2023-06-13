@@ -3,7 +3,9 @@
     <div class="box-empty"></div>
     <h1>Booksters website</h1>
     <div class="sign-in-profile">
-      <p>Browsing as user username</p>
+      <p>
+        Browsing as user <strong>{{ username }}</strong>
+      </p>
       <BaseButton
         class="btn btn-sign-out"
         btnText="Sign out"
@@ -20,9 +22,12 @@ import jwtService from "@/service/jwtService";
 import BaseButton from "./BaseButton.vue";
 export default {
   components: { BaseButton },
+  props: {
+    username: String,
+  },
   methods: {
     handleLogoutButton() {
-      jwtService.deleteJwt('jwt');
+      jwtService.deleteJwt("jwt");
       this.$router.push("/login");
     },
   },

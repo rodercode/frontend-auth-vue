@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <BaseHeader class="header-online-state" />
+    <BaseHeader class="header-online-state" :username="consumer.username" />
     <div class="user-view">
       <input
         placeholder="Search book..."
@@ -52,9 +52,9 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import { Book } from "@/model/book";
-import axios from "axios";
 import bookService from "@/service/bookService";
 import jwtService from "@/service/jwtService";
+import consumerService from "@/service/consumerService";
 
 // Components
 import BaseButton from "@/components/BaseButton.vue";
@@ -68,6 +68,8 @@ export default defineComponent({
       bookList: [] as Book[],
       displayBooks: [] as Book[],
       timer: 0,
+      token: jwtService.getJwt('jwt'),
+      consumer: {username:"", role:""}
     };
   },
   async created() {
@@ -79,6 +81,10 @@ export default defineComponent({
     userInput() {
       this.renderTimer();
     },
+  
+  },
+  mounted(){
+    this.consumer = consumerService.getConsumer(this.token);
   },
   methods: {
     async placeOrder(title: string, purchased: number) {

@@ -24,6 +24,7 @@ import authService from "@/service/authService";
 import BaseForm from "@/components/BaseForm.vue";
 import BaseHeader from "@/components/BaseHeader.vue";
 import jwtService from "@/service/jwtService";
+import consumerService from "@/service/consumerService";
 
 export default defineComponent({
   name: "RegisterView",
@@ -35,7 +36,6 @@ export default defineComponent({
       msg: ("" as string) || undefined,
       btnText: "Sign in",
       path: "/register",
-      test: this.variable,
     };
   },
   methods: {
@@ -49,11 +49,21 @@ export default defineComponent({
     convertToLowerCase(username: string) {
       username.toLowerCase();
     },
+    switchPage() {
+      const token = jwtService.getJwt("jwt");
+      const consumer = consumerService.getConsumer(token);
+
+      if (consumer.role === "USER") {
+        this.$router.push("/user");
+      } else if (consumer.role === "ADMIN") {
+        this.$router.push("/admin");
+      }
+    },
   },
   watch: {
     msg() {
       if (this.msg === "Successfully") {
-        this.$router.push("/user");
+        this.switchPage();
       }
     },
   },
