@@ -36,6 +36,8 @@ export default defineComponent({
       msg: ("" as string) || undefined,
       btnText: "Sign in",
       path: "/register",
+      token: jwtService.getJwt("jwt"),
+
     };
   },
   methods: {
@@ -50,8 +52,7 @@ export default defineComponent({
       username.toLowerCase();
     },
     switchPage() {
-      const token = jwtService.getJwt("jwt");
-      const consumer = consumerService.getConsumer(token);
+      const consumer = consumerService.getConsumer(this.token);
 
       if (consumer.role === "USER") {
         this.$router.push("/user");
