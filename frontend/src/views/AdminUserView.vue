@@ -52,12 +52,12 @@
                 <BaseButton
                   class="btn btn-action"
                   btn-text="Promote"
-                  @click="handleButton"
+                  @click="handleActionButton"
                 />
                 <BaseButton
                   class="btn btn-action"
                   btn-text="Delete"
-                  @click="handleButton"
+                  @click="handleActionButton"
                 />
               </div>
             </td>
@@ -118,7 +118,7 @@ export default defineComponent({
     },
   },
   methods: {
-    handleButton(){
+    handleActionButton(){
       this.popup = true
     },
 
