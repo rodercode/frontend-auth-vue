@@ -1,18 +1,11 @@
+<!-- 
+ * Creator: Marcus Groth
+ * Date: 14e June
+ * This is app.vue file that is the root component of the application 
+ -->
+
 <template>
   <div class="app">
     <router-view />
   </div>
 </template>
-
-<script lang="ts">
-import { defineComponent } from "vue";
-export default defineComponent({
-  name: "App",
-  data() {
-    return {
-      online: true,
-    };
-  },
-  watch: {},
-});
-</script>

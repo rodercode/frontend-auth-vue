@@ -1,3 +1,9 @@
+<!-- 
+ * Creator: Marcus Groth
+ * Date: 14e June
+ * This is Admin book view where an admin can add, edit, delete and order a book.
+ -->
+
 <template>
   <div class="container">
     <BaseHeader
@@ -104,6 +110,7 @@ export default defineComponent({
       user: {} as User, 
     };
   },
+  // Handle promise from book service and user service
   async created() {
     this.bookList = await bookService.getBooks();
     this.bookList.forEach((book) => (book.purchased = 0));
@@ -116,6 +123,8 @@ export default defineComponent({
     },
   },
   methods: {
+    
+    // Make an order to the backend
     async placeOrder(title: string, purchased: number) {
       await bookService.orderBooks(title, purchased);
       this.refreshPage();
@@ -123,11 +132,14 @@ export default defineComponent({
     refreshPage() {
       this.$router.go(0);
     },
+    // Render books that should be displayed
     renderBooks() {
       this.displayBooks = this.bookList.filter((book) =>
         book.title.includes(this.userInput)
       );
     },
+
+    // Will start a render timer when user stop typingS
     renderTimer() {
       clearTimeout(this.timer);
       this.timer = setTimeout(() => {

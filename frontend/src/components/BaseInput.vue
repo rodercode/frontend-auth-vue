@@ -1,3 +1,9 @@
+<!-- 
+ * Creator: Marcus Groth
+ * Date: 14e June
+ * This is a reusable input component 
+ -->
+
 <template>
   <input
     :type="textType"

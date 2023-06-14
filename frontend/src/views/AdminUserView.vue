@@ -1,3 +1,9 @@
+<!-- 
+ * Creator: Marcus Groth
+ * Date: 14e June
+ * This is Admin user view where an admin can display all data of created users and also change user rank
+ -->
+
 <template>
   <div class="container">
     <BaseHeader
@@ -62,7 +68,6 @@ import { User } from "@/model/user";
 
 // Service imports
 import jwtService from "@/service/jwtService";
-import consumerService from "@/service/consumerService";
 import userService from "@/service/userService";
 
 // Components import
@@ -82,8 +87,11 @@ export default defineComponent({
       user: {} as User,
     };
   },
+  // Handle Promise from user service
   async created() {
     this.users = await userService.getUserList();
+
+    // Add empty purchases array if purchases doesn't exist
     this.users.forEach((user) => {
       if (user.purchases == undefined) {
         user.purchases = [];
@@ -101,11 +109,15 @@ export default defineComponent({
     refreshPage() {
       this.$router.go(0);
     },
+    
+    // Render user that should be displayed
     renderUsers() {
       this.displayUsers = this.users.filter((user) =>
         user.username.includes(this.userInput)
       );
     },
+
+    // Will start a render timer when user stop typing
     renderTimer() {
       clearTimeout(this.timer);
       this.timer = setTimeout(() => {

@@ -1,3 +1,9 @@
+/**
+ * Creator: Marcus Groth
+ * Date: 14e June
+ * info: This file is a cache service that set, get or delete data in local storage
+ */
+
 export default {
   // Save data to local storage
   setLocal(key: string, data: any): void {

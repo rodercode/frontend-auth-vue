@@ -1,3 +1,9 @@
+<!-- 
+ * Creator: Marcus Groth
+ * Date: 14e June
+ * This is login view component where user are able to log in
+ -->
+
 <template>
   <div class="container">
     <BaseHeader class="header-offline-state" />
@@ -14,17 +20,19 @@
 </template>
 
 <script lang="ts">
-import cacheService from "@/service/cacheService";
 import { defineComponent } from "vue";
-import VueRouter from "vue-router";
-import { Consumer } from "../model/consumer";
-import authService from "@/service/authService";
 
-// Components
-import BaseForm from "@/components/BaseForm.vue";
-import BaseHeader from "@/components/BaseHeader.vue";
+// Model imports
+import { Consumer } from "../model/consumer";
+
+// Service imports
 import jwtService from "@/service/jwtService";
 import consumerService from "@/service/consumerService";
+import authService from "@/service/authService";
+
+// Components imports
+import BaseForm from "@/components/BaseForm.vue";
+import BaseHeader from "@/components/BaseHeader.vue";
 
 export default defineComponent({
   name: "RegisterView",
@@ -41,16 +49,22 @@ export default defineComponent({
   methods: {
     handleLoginButton(consumer: Consumer) {
       this.convertToLowerCase(consumer.username);
-      this.handlePromise(consumer);
+      this.handleLogin(consumer);
     },
-    async handlePromise(consumer: Consumer) {
+
+    // Generate jwt if username and password is correct
+    async handleLogin(consumer: Consumer) {
       this.msg = await authService.login(consumer);
     },
+
+    // Convert username to lower case
     convertToLowerCase(username: string) {
       username.toLowerCase();
     },
+
+    // Switch page from login to userView or adminView
     switchPage() {
-      const token = jwtService.getJwt('jwt');
+      const token = jwtService.getJwt("jwt");
       const consumer = consumerService.getConsumer(token);
 
       if (consumer.role === "USER") {

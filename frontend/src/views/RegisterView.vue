@@ -1,9 +1,15 @@
+<!-- 
+ * Creator: Marcus Groth
+ * Date: 14e June
+ * This is register view component where user can create a new user 
+ -->
+
 <template>
   <div class="container">
     <BaseHeader class="header-offline-state" />
     <div class="register">
       <BaseForm
-        @sendUserDetails="registerUser"
+        @sendUserDetails="handleRegistrationButton"
         :header="header"
         :msg="msg"
         :btnText="btnText"
@@ -15,7 +21,6 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import VueRouter from "vue-router";
 import { Consumer } from "@/model/consumer";
 import authService from "@/service/authService";
 
@@ -35,13 +40,17 @@ export default defineComponent({
     };
   },
   methods: {
+    // create new user in the backend
     async handleRegistration(consumer: Consumer) {
       this.msg = await authService.register(consumer);
     },
+    
+    // Convert username to lower case
     convertToLowerCase(username: string) {
       username.toLowerCase();
     },
-    registerUser(consumer: Consumer) {
+
+    handleRegistrationButton(consumer: Consumer) {
       this.convertToLowerCase(consumer.username);
       this.handleRegistration(consumer);
     },

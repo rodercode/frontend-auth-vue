@@ -1,5 +1,12 @@
+/**
+ * Creator: Marcus Groth
+ * Date: 14e June
+ * info: I'm planing on to remove this file in the future
+ */
+
 import tokenAxios from "@/interceptor/tokenAxios";
 import jwtService from "./jwtService";
+import { Token } from "@/model/token";
 
 export default {
   getConsumer(token: Token): {

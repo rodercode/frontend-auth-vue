@@ -1,3 +1,9 @@
+<!-- 
+ * Creator: Marcus Groth
+ * Date: 14e June
+ * This is a reusable button component 
+ -->
+
 <template>
   <button>{{ btnText }}</button>
 </template>

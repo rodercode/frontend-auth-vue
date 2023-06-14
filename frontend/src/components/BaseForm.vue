@@ -1,3 +1,9 @@
+<!-- 
+ * Creator: Marcus Groth
+ * Date: 14e June
+ * This is a reusable form component 
+ -->
+
 <template>
   <form class="form" v-on:submit.prevent="submit">
     <header class="form-header">

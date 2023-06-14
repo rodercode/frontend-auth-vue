@@ -1,3 +1,9 @@
+<!-- 
+ * Creator: Marcus Groth
+ * Date: 14e June
+ * This is guest view component no Authorization is needed
+ -->
+
 <template>
   <div class="container">
     <BaseHeader class="header-online-state" />
@@ -30,12 +36,17 @@
 </template>
 <script lang="ts">
 import { defineComponent } from "vue";
+
+// Model imports
 import { Book } from "@/model/book";
-import axios from "axios";
+
+// Service imports
 import bookService from "@/service/bookService";
-// Components
+
+// Components imports
 import BaseInput from "@/components/BaseInput.vue";
 import BaseHeader from "@/components/BaseHeader.vue";
+
 export default defineComponent({
   name: "GuestView",
   components: { BaseInput, BaseHeader },
@@ -47,6 +58,8 @@ export default defineComponent({
       timer: 0,
     };
   },
+  
+  // Handle Promise from bookService
   async mounted() {
     this.bookList = await bookService.getBooks();
     this.displayBooks = this.bookList;
@@ -57,11 +70,14 @@ export default defineComponent({
     },
   },
   methods: {
+    // Render books that should be display
     renderBooks() {
       this.displayBooks = this.bookList.filter((book) =>
         book.title.includes(this.userInput)
       );
     },
+    
+    // Timer that render books when user stopped typing
     renderTimer() {
       clearTimeout(this.timer);
       this.timer = setTimeout(() => {

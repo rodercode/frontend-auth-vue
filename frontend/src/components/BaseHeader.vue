@@ -1,3 +1,9 @@
+<!-- 
+ * Creator: Marcus Groth
+ * Date: 14e June
+ * This is a reusable header component 
+ -->
+
 <template>
   <header class="bannar">
     <div class="box-empty"></div>
