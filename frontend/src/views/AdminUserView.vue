@@ -12,7 +12,7 @@
       :role="user.role"
     />
 
-    <NewPopup v-if="popup == true" />
+    <NewPopup @sendPopup="cancelPopup" v-if="popup == true"  />
     <div class="admin">
       <div class="container-upper">
         <input
@@ -49,8 +49,16 @@
             <td>{{ user.purchases.length }} purchases</td>
             <td>
               <div class="container-btns-action">
-                <BaseButton class="btn btn-action" btn-text="Promote" @click="handleButton" />
-                <BaseButton class="btn btn-action" btn-text="Delete" @click="handleButton" />
+                <BaseButton
+                  class="btn btn-action"
+                  btn-text="Promote"
+                  @click="handleButton"
+                />
+                <BaseButton
+                  class="btn btn-action"
+                  btn-text="Delete"
+                  @click="handleButton"
+                />
               </div>
             </td>
           </tr>
@@ -110,10 +118,15 @@ export default defineComponent({
     },
   },
   methods: {
-
     handleButton(){
-      this.popup = true;
+      this.popup = true
     },
+
+    cancelPopup(popup:boolean){
+      this.popup = popup;
+      console.log(popup);
+    },
+
     refreshPage() {
       this.$router.go(0);
     },

@@ -8,16 +8,8 @@
       <p>Marcus</p>
     </div>
     <div class="container-btn">
-      <BaseButton
-        class="btn btn-popup"
-        btnText="Proceed"
-        @click="$router.push('/gueusst')"
-      />
-      <BaseButton
-        class="btn btn-popup"
-        btnText="Cancel"
-        @click="$router.push('/gueusst')"
-      />
+      <BaseButton class="btn btn-popup" btnText="Proceed" />
+      <BaseButton class="btn btn-popup" btnText="Cancel" @click="handleCancelButton" />
     </div>
   </div>
 </template>
@@ -28,6 +20,18 @@ import { defineComponent } from "vue";
 import BaseButton from "./BaseButton.vue";
 export default defineComponent({
   components: { BaseButton },
+  data() {
+    return {
+      popup: false,
+    };
+  },
+  methods: {
+    handleCancelButton() {
+      this.$emit("sendPopup", {
+        popup: this.popup,
+      });
+    },
+  },
 });
 </script>
 
