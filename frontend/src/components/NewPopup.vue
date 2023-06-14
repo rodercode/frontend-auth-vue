@@ -9,7 +9,11 @@
     </div>
     <div class="container-btn">
       <BaseButton class="btn btn-popup" btnText="Proceed" />
-      <BaseButton class="btn btn-popup" btnText="Cancel" @click="handleCancelButton" />
+      <BaseButton
+        class="btn btn-popup"
+        btnText="Cancel"
+        @click="handleCancelButton"
+      />
     </div>
   </div>
 </template>
@@ -27,9 +31,7 @@ export default defineComponent({
   },
   methods: {
     handleCancelButton() {
-      this.$emit("sendPopup", {
-        popup: this.popup,
-      });
+      this.$emit("cancelPopupWindow");
     },
   },
 });

@@ -12,7 +12,7 @@
       :role="user.role"
     />
 
-    <NewPopup @sendPopup="cancelPopup" v-if="popup == true"  />
+    <NewPopup @cancelPopupWindow="cancelPopup" v-if="popup == true"  />
     <div class="admin">
       <div class="container-upper">
         <input
@@ -122,9 +122,8 @@ export default defineComponent({
       this.popup = true
     },
 
-    cancelPopup(popup:boolean){
-      this.popup = popup;
-      console.log(popup);
+    cancelPopup(){
+      this.popup = false;
     },
 
     refreshPage() {
