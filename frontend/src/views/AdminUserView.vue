@@ -11,6 +11,8 @@
       :username="user.username"
       :role="user.role"
     />
+
+    <NewPopup v-if="popup == true" />
     <div class="admin">
       <div class="container-upper">
         <input
@@ -33,8 +35,6 @@
         </div>
       </div>
 
-      <NewPopup />
-
       <div v-if="displayUsers.length !== 0">
         <table class="table-user-list">
           <tr>
@@ -49,8 +49,8 @@
             <td>{{ user.purchases.length }} purchases</td>
             <td>
               <div class="container-btns-action">
-                <BaseButton class="btn btn-action" btn-text="Promote" />
-                <BaseButton class="btn btn-action" btn-text="Delete" />
+                <BaseButton class="btn btn-action" btn-text="Promote" @click="handleButton" />
+                <BaseButton class="btn btn-action" btn-text="Delete" @click="handleButton" />
               </div>
             </td>
           </tr>
@@ -88,6 +88,7 @@ export default defineComponent({
       timer: 0,
       token: jwtService.getJwt("jwt"),
       user: {} as User,
+      popup: false,
     };
   },
   // Handle Promise from user service
@@ -109,6 +110,10 @@ export default defineComponent({
     },
   },
   methods: {
+
+    handleButton(){
+      this.popup = true;
+    },
     refreshPage() {
       this.$router.go(0);
     },

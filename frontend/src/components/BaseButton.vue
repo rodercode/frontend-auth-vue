@@ -86,8 +86,8 @@ export default defineComponent({
 /* Styling for buttons in popup component*/
 
 .btn-popup {
-  font-size: 26px;
-  padding: 0.4em 2.5em;
+  font-size: 24px;
+  padding: 0.4em 2em;
   background: rgb(80, 77, 77);
   color: #fff;
 }

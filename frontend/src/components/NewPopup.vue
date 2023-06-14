@@ -33,13 +33,15 @@ export default defineComponent({
 
 <style lang="css" scoped>
 .popup {
+  position: fixed;
+  right: 30%;
+  bottom: 30%;
   background-color: grey;
-  width: 45%;
   padding: 3em 4em;
   text-align: center;
 }
 
-.container-headline{
+.container-headline {
   margin-bottom: 5em;
 }
 
