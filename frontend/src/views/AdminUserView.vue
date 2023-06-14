@@ -33,6 +33,8 @@
         </div>
       </div>
 
+      <NewPopup />
+
       <div v-if="displayUsers.length !== 0">
         <table class="table-user-list">
           <tr>
@@ -73,10 +75,11 @@ import userService from "@/service/userService";
 // Components import
 import BaseButton from "@/components/BaseButton.vue";
 import BaseHeader from "@/components/BaseHeader.vue";
+import NewPopup from "@/components/NewPopup.vue";
 
 export default defineComponent({
   name: "AdminUserView",
-  components: { BaseButton, BaseHeader },
+  components: { BaseButton, BaseHeader, NewPopup },
   data() {
     return {
       userInput: "",
@@ -109,7 +112,7 @@ export default defineComponent({
     refreshPage() {
       this.$router.go(0);
     },
-    
+
     // Render user that should be displayed
     renderUsers() {
       this.displayUsers = this.users.filter((user) =>
