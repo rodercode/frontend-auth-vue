@@ -2,8 +2,8 @@
   <div class="container">
     <BaseHeader
       class="header-online-state"
-      :username="consumer.username.toUpperCase()"
-      :role="consumer.role"
+      :username="user.username"
+      :role="user.role"
     />
     <div class="user">
       <input
@@ -55,14 +55,20 @@
 </template>
 <script lang="ts">
 import { defineComponent } from "vue";
+
+// Model imports
 import { Book } from "@/model/book";
+import { User } from "@/model/user";
+
+// Service imports
 import bookService from "@/service/bookService";
 import jwtService from "@/service/jwtService";
-import consumerService from "@/service/consumerService";
+import userService from "@/service/userService";
 
-// Components
+// Components imports
 import BaseButton from "@/components/BaseButton.vue";
 import BaseHeader from "@/components/BaseHeader.vue";
+
 export default defineComponent({
   name: "GuestView",
   components: { BaseButton, BaseHeader },
@@ -73,21 +79,19 @@ export default defineComponent({
       displayBooks: [] as Book[],
       timer: 0,
       token: jwtService.getJwt("jwt"),
-      consumer: { username: "", role: "" },
+      user: {} as User,
     };
   },
   async created() {
     this.bookList = await bookService.getBooks();
     this.bookList.forEach((book) => (book.purchased = 0));
     this.displayBooks = this.bookList;
+    this.user = await userService.getUser();
   },
   watch: {
     userInput() {
       this.renderTimer();
     },
-  },
-  mounted() {
-    this.consumer = consumerService.getConsumer(this.token);
   },
   methods: {
     async placeOrder(title: string, purchased: number) {

@@ -2,13 +2,13 @@
   <div class="container">
     <BaseHeader
       class="header-online-state"
-      :username="consumer.username.toUpperCase()"
-      :role="consumer.role"
+      :username="user.username"
+      :role="user.role"
     />
     <div class="admin">
       <div class="container-upper">
         <input
-          placeholder="Search book..."
+          placeholder="Search User..."
           class="input input-search"
           type="text"
           v-model="userInput"
@@ -27,18 +27,18 @@
         </div>
       </div>
 
-      <div v-if="bookList.length !== 0">
-        <table class="table-book-list">
+      <div v-if="displayUsers.length !== 0">
+        <table class="table-user-list">
           <tr>
             <th>Username</th>
             <th>Role</th>
             <th>Purchases</th>
             <th>Action</th>
           </tr>
-          <tr v-for="book in displayBooks" :key="book.title">
-            <td>{{ book.title }}</td>
-            <td>{{ book.author }}</td>
-            <td>{{ book.quantity }} purchases</td>
+          <tr v-for="user in displayUsers" :key="user.username">
+            <td>{{ user.username }}</td>
+            <td>{{ user.role }}</td>
+            <td>{{ user.purchases.length }} purchases</td>
             <td>
               <div class="container-btns-action">
                 <BaseButton class="btn btn-action" btn-text="Promote" />
@@ -49,64 +49,67 @@
         </table>
       </div>
       <div v-else>
-        <h3>Loading books....</h3>
+        <h3>Loading users....</h3>
       </div>
     </div>
   </div>
 </template>
 <script lang="ts">
 import { defineComponent } from "vue";
-import { Book } from "@/model/book";
-import bookService from "@/service/bookService";
+
+// Model imports
+import { User } from "@/model/user";
+
+// Service imports
 import jwtService from "@/service/jwtService";
 import consumerService from "@/service/consumerService";
+import userService from "@/service/userService";
 
-// Components
+// Components import
 import BaseButton from "@/components/BaseButton.vue";
 import BaseHeader from "@/components/BaseHeader.vue";
+
 export default defineComponent({
   name: "AdminUserView",
   components: { BaseButton, BaseHeader },
   data() {
     return {
       userInput: "",
-      bookList: [] as Book[],
-      displayBooks: [] as Book[],
+      users: [] as User[],
+      displayUsers: [] as User[],
       timer: 0,
       token: jwtService.getJwt("jwt"),
-      consumer: { username: "", role: "" },
+      user: {} as User,
     };
   },
   async created() {
-    this.bookList = await bookService.getBooks();
-    this.bookList.forEach((book) => (book.purchased = 0));
-    this.displayBooks = this.bookList;
+    this.users = await userService.getUserList();
+    this.users.forEach((user) => {
+      if (user.purchases == undefined) {
+        user.purchases = [];
+      }
+    });
+    this.displayUsers = this.users;
+    this.user = await userService.getUser();
   },
   watch: {
     userInput() {
       this.renderTimer();
     },
   },
-  mounted() {
-    this.consumer = consumerService.getConsumer(this.token);
-  },
   methods: {
-    async placeOrder(title: string, purchased: number) {
-      await bookService.orderBooks(title, purchased);
-      this.refreshPage();
-    },
     refreshPage() {
       this.$router.go(0);
     },
-    renderBooks() {
-      this.displayBooks = this.bookList.filter((book) =>
-        book.title.includes(this.userInput)
+    renderUsers() {
+      this.displayUsers = this.users.filter((user) =>
+        user.username.includes(this.userInput)
       );
     },
     renderTimer() {
       clearTimeout(this.timer);
       this.timer = setTimeout(() => {
-        this.renderBooks();
+        this.renderUsers();
         console.log("rending");
       }, 1000);
     },
