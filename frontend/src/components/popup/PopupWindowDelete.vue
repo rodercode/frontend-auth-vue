@@ -8,7 +8,7 @@
       <p>Marcus</p>
     </div>
     <div class="container-btn">
-      <BaseButton class="btn btn-popup" btnText="Proceed" />
+      <BaseButton class="btn btn-popup" btnText="Delete" />
       <BaseButton
         class="btn btn-popup"
         btnText="Cancel"
@@ -23,6 +23,7 @@ import { defineComponent } from "vue";
 // Components import
 import BaseButton from "@/components/base/BaseButton.vue"
 export default defineComponent({
+  name:"PopupWindow",
   components: { BaseButton },
   data() {
     return {

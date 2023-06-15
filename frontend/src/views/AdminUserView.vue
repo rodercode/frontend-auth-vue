@@ -8,7 +8,7 @@
   <div>
     <BaseHeader :username="user.username" :role="user.role" btnName="Sign out" />
 
-    <NewPopup @cancelPopupWindow="cancelPopup" v-if="popup == true" />
+    <PopupWindowDelete @cancelPopupWindow="cancelPopup" v-if="popup == true" />
     <div class="admin">
       <div class="container-upper">
         <input
@@ -79,11 +79,11 @@ import userService from "@/service/userService";
 // Components import
 import BaseButton from "@/components/base/BaseButton.vue";
 import BaseHeader from "@/components/base/BaseHeader.vue";
-import NewPopup from "@/components/popup/NewPopup.vue";
+import PopupWindowDelete from "@/components/popup/PopupWindowDelete.vue";
 
 export default defineComponent({
   name: "AdminUserView",
-  components: { BaseButton, BaseHeader, NewPopup },
+  components: { BaseButton, BaseHeader, PopupWindowDelete },
   data() {
     return {
       userInput: "",
