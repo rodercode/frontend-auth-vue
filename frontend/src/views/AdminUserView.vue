@@ -8,7 +8,9 @@
   <div>
     <BaseHeader :username="user.username" :role="user.role" btnName="Sign out" />
 
-    <PopupWindowDelete @cancelPopupWindow="cancelPopup" v-if="popup == true" />
+    <PopupWindowDelete @cancelPopupWindow="cancelPopup" v-if="popupDelete == true" />
+    <PopupWindowPromote @cancelPopupWindow="cancelPopup" v-if="popupPromote == true" />
+    
     <div class="admin">
       <div class="container-upper">
         <input
@@ -48,12 +50,12 @@
                 <BaseButton
                   class="btn btn-action"
                   btn-text="Promote"
-                  @click="handleActionButton"
+                  @click="handlePromoteButton"
                 />
                 <BaseButton
                   class="btn btn-action"
                   btn-text="Delete"
-                  @click="handleActionButton"
+                  @click="handleDeleteButton"
                 />
               </div>
             </td>
@@ -80,10 +82,11 @@ import userService from "@/service/userService";
 import BaseButton from "@/components/base/BaseButton.vue";
 import BaseHeader from "@/components/base/BaseHeader.vue";
 import PopupWindowDelete from "@/components/popup/PopupWindowDelete.vue";
+import PopupWindowPromote from "@/components/popup/PopupWindowPromote.vue"
 
 export default defineComponent({
   name: "AdminUserView",
-  components: { BaseButton, BaseHeader, PopupWindowDelete },
+  components: { BaseButton, BaseHeader, PopupWindowPromote, PopupWindowDelete },
   data() {
     return {
       userInput: "",
@@ -92,7 +95,8 @@ export default defineComponent({
       timer: 0,
       token: jwtService.getJwt("jwt"),
       user: {} as User,
-      popup: false,
+      popupPromote: false,
+      popupDelete: false,
     };
   },
   // Handle Promise from user service
@@ -114,12 +118,17 @@ export default defineComponent({
     },
   },
   methods: {
-    handleActionButton() {
-      this.popup = true;
+    handlePromoteButton() {
+      this.popupPromote = true;
+    },
+
+    handleDeleteButton(){
+      this.popupDelete = true;
     },
 
     cancelPopup() {
-      this.popup = false;
+      this.popupPromote = false;
+      this.popupDelete = false;
     },
 
     refreshPage() {
