@@ -35,7 +35,10 @@ export default defineComponent({
   name: "BookTable",
   components: {},
   props: {
-    userInput: String,
+    userInput:{
+      type:String,
+      default:"",
+    }
   },
   data() {
     return {
