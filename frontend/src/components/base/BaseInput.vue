@@ -47,4 +47,10 @@ export default defineComponent({
 .input-search:focus::placeholder {
   color: transparent;
 }
+
+/* Styling for input field add or edit book */
+.input-book{
+  padding: 1em 2em;
+  font-size: 18px;
+}
 </style>
