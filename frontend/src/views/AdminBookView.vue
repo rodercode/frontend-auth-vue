@@ -11,6 +11,11 @@
       :role="user.role"
       btnName="Sign out"
     />
+    <PopupWindowEdit @cancelPopupWindow="cancelPopup" v-if="popupEdit == true" />
+    <PopupWindowAdd @cancelPopupWindow="cancelPopup" v-if="popupAdd == true" />
+    <PopupWindowDelete @cancelPopupWindow="cancelPopup" v-if="popupDelete == true" />
+
+
     <div class="admin">
       <div class="container-upper">
         <input
@@ -19,7 +24,7 @@
           type="text"
           v-model="userInput"
         />
-        <BaseButton class="btn btn-add-book" btn-text="Add new book" />
+        <BaseButton class="btn btn-add-book" btn-text="Add new book" @click="handleAddButton" />
         <div class="container-btns-tab">
           <BaseButton
             class="btn-tab"
@@ -69,8 +74,8 @@
             </td>
             <td>
               <div class="container-btns-action">
-                <BaseButton class="btn btn-action" btn-text="Edit" />
-                <BaseButton class="btn btn-action" btn-text="Delete" />
+                <BaseButton class="btn btn-action" btn-text="Edit" @click="handleEditButton" />
+                <BaseButton class="btn btn-action" btn-text="Delete" @click="handleDeleteButton" />
               </div>
             </td>
           </tr>
@@ -97,10 +102,13 @@ import userService from "@/service/userService";
 // Components imports
 import BaseButton from "@/components/base/BaseButton.vue";
 import BaseHeader from "@/components/base/BaseHeader.vue";
+import PopupWindowDelete from "@/components/popup/PopupWindowDelete.vue";
+import PopupWindowEdit from "@/components/popup/PopupWindowEdit.vue";
+import PopupWindowAdd from "@/components/popup/PopupWindowAdd.vue";
 
 export default defineComponent({
   name: "AdminBookView",
-  components: { BaseButton, BaseHeader },
+  components: { BaseButton, BaseHeader, PopupWindowDelete, PopupWindowEdit, PopupWindowAdd },
   data() {
     return {
       userInput: "",
@@ -109,6 +117,9 @@ export default defineComponent({
       timer: 0,
       token: jwtService.getJwt("jwt"),
       user: {} as User,
+      popupDelete: false,
+      popupEdit:false,
+      popupAdd:false,
     };
   },
   // Handle promise from book service and user service
@@ -129,6 +140,24 @@ export default defineComponent({
       await bookService.orderBooks(title, purchased);
       this.refreshPage();
     },
+
+    handleAddButton(){
+      this.popupAdd = true;
+    },
+
+    handleEditButton(){
+      this.popupEdit = true;
+    },
+
+    handleDeleteButton(){
+      this.popupDelete = true;
+    },
+    cancelPopup() {
+      this.popupAdd = false;
+      this.popupEdit = false;
+      this.popupDelete = false;
+    },
+
     refreshPage() {
       this.$router.go(0);
     },
