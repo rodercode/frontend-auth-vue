@@ -6,13 +6,9 @@
 
 <template>
   <div>
-    <BaseHeader
-      class="header-online-state"
-      :username="user.username"
-      :role="user.role"
-    />
+    <BaseHeader :username="user.username" :role="user.role" btnName="Sign out" />
 
-    <NewPopup  @cancelPopupWindow="cancelPopup" v-if="popup == true"  />
+    <NewPopup @cancelPopupWindow="cancelPopup" v-if="popup == true" />
     <div class="admin">
       <div class="container-upper">
         <input
@@ -118,11 +114,11 @@ export default defineComponent({
     },
   },
   methods: {
-    handleActionButton(){
-      this.popup = true
+    handleActionButton() {
+      this.popup = true;
     },
 
-    cancelPopup(){
+    cancelPopup() {
       this.popup = false;
     },
 
@@ -150,8 +146,6 @@ export default defineComponent({
 </script>
 
 <style scoped>
-
-
 .admin {
   margin: 4em 4em 0em 4em;
 }

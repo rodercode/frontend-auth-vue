@@ -7,9 +7,9 @@
 <template>
   <div class="container">
     <BaseHeader
-      class="header-online-state"
       :username="user.username"
       :role="user.role"
+      btnName="Sign out"
     />
     <div class="admin">
       <div class="container-upper">
@@ -87,7 +87,7 @@ import { defineComponent } from "vue";
 
 // Model imports
 import { Book } from "@/model/book";
-import {User} from "@/model/user";
+import { User } from "@/model/user";
 
 // Service imports
 import bookService from "@/service/bookService";
@@ -107,7 +107,7 @@ export default defineComponent({
       displayBooks: [] as Book[],
       timer: 0,
       token: jwtService.getJwt("jwt"),
-      user: {} as User, 
+      user: {} as User,
     };
   },
   // Handle promise from book service and user service
@@ -123,7 +123,6 @@ export default defineComponent({
     },
   },
   methods: {
-    
     // Make an order to the backend
     async placeOrder(title: string, purchased: number) {
       await bookService.orderBooks(title, purchased);

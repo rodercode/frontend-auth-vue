@@ -7,7 +7,10 @@
 <template>
   <div class="guest-view">
     <header>
-      <BaseHeader class="header-offline-state" />
+      <BaseHeader
+      role="guest"
+      btnName="Sign in"
+    />
     </header>
     <main>
       <BaseInput
@@ -16,7 +19,8 @@
         placeholderValue="Enter a book title..."
         v-model="userInput"
       />
-      <BookTable :userInput="userInput" />
+      <BookTable :userInput="userInput" >
+      </BookTable>
     </main>
   </div>
 </template>
@@ -33,7 +37,7 @@ export default defineComponent({
   components: { BaseInput, BaseHeader, BookTable },
   data() {
     return {
-      userInput: "",
+      userInput: "" as string,
     };
   },
 });

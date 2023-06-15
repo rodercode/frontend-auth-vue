@@ -11,6 +11,9 @@
         <th>Book title</th>
         <th>Book author</th>
         <th>Availability</th>
+        <slot>
+
+        </slot>
       </tr>
       <tr v-for="book in displayBooks" :key="book.title">
         <td>{{ book.title }}</td>

@@ -5,7 +5,7 @@
  -->
 
 <template>
-  <header class="bannar">
+  <header class="header">
     <div class="box-empty"></div>
     <h1>Booksters website</h1>
     <div class="sign-in-profile">
@@ -14,8 +14,8 @@
       </p>
       <BaseButton
         class="btn btn-sign-out"
-        btnText="Sign out"
-        @click="handleLogoutButton"
+        :btnText="btnName"
+        @click="handleAuthButton"
       />
     </div>
   </header>
@@ -31,9 +31,10 @@ export default {
   props: {
     username: String,
     role: String,
+    btnName: String,
   },
   methods: {
-    handleLogoutButton() {
+    handleAuthButton() {
       jwtService.deleteJwt("jwt");
       this.$router.push("/");
     },
@@ -42,19 +43,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.header-offline-state {
-  background-color: grey;
-  color: #fff;
-  padding: 1.5em;
-  display: flex;
-  align-content: center;
-  justify-content: space-around;
-
-  div {
-    opacity: 0;
-  }
-}
-.header-online-state {
+.header{
   background-color: grey;
   color: #fff;
   padding: 1.5em;

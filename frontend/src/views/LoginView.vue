@@ -6,7 +6,7 @@
 
 <template>
   <div class="container">
-    <BaseHeader class="header-offline-state" />
+    <BaseHeader role="guest" btnName="Sign in"/>
     <div class="login">
       <BaseForm
         @sendUserDetails="handleLoginButton"

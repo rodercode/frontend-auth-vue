@@ -40,7 +40,7 @@
       <BaseButton
         class="btn btn-form"
         btnText="Process as guest user"
-        @click="$router.push('/gueusst')"
+        @click="$router.push('/guest')"
       />
     </div>
   </form>

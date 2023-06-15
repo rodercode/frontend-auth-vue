@@ -7,9 +7,9 @@
 <template>
   <div class="container">
     <BaseHeader
-      class="header-online-state"
       :username="user.username"
       :role="user.role"
+      btnName="Sign out"
     />
     <div class="user">
       <input
