@@ -49,9 +49,9 @@
 <script>
 import { defineComponent } from "vue";
 
-// Components
-import BaseInput from "@/components/BaseInput.vue";
-import BaseButton from "@/components/BaseButton.vue";
+// Components imports
+import BaseInput from "@/components/base/BaseInput.vue";
+import BaseButton from "@/components/base/BaseButton.vue";
 
 export default defineComponent({
   components: { BaseInput, BaseButton },

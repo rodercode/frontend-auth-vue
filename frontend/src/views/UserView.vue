@@ -72,8 +72,8 @@ import jwtService from "@/service/jwtService";
 import userService from "@/service/userService";
 
 // Components imports
-import BaseButton from "@/components/BaseButton.vue";
-import BaseHeader from "@/components/BaseHeader.vue";
+import BaseButton from "@/components/base/BaseButton.vue";
+import BaseHeader from "@/components/base/BaseHeader.vue";
 
 export default defineComponent({
   name: "GuestView",

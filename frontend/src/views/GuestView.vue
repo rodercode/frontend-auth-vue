@@ -7,10 +7,7 @@
 <template>
   <div class="guest-view">
     <header>
-      <BaseHeader
-      role="guest"
-      btnName="Sign in"
-    />
+      <BaseHeader role="guest" btnName="Sign in" />
     </header>
     <main>
       <BaseInput
@@ -19,8 +16,7 @@
         placeholderValue="Enter a book title..."
         v-model="userInput"
       />
-      <BookTable :userInput="userInput" >
-      </BookTable>
+      <BookTableGuest :userInput="userInput" />
     </main>
   </div>
 </template>
@@ -28,13 +24,13 @@
 import { defineComponent } from "vue";
 
 // Components imports
-import BaseInput from "@/components/BaseInput.vue";
-import BaseHeader from "@/components/BaseHeader.vue";
-import BookTable from "@/components/BookTable.vue";
+import BaseInput from "@/components/base/BaseInput.vue";
+import BaseHeader from "@/components/base/BaseHeader.vue";
+import BookTableGuest from "@/components/table/book-table/BookTableGuest.vue";
 
 export default defineComponent({
   name: "GuestView",
-  components: { BaseInput, BaseHeader, BookTable },
+  components: { BaseInput, BaseHeader, BookTableGuest },
   data() {
     return {
       userInput: "" as string,

@@ -24,9 +24,9 @@ import { defineComponent } from "vue";
 import { Consumer } from "@/model/consumer";
 import authService from "@/service/authService";
 
-// Components
-import BaseForm from "@/components/BaseForm.vue";
-import BaseHeader from "@/components/BaseHeader.vue";
+// Components import
+import BaseForm from "@/components/base/BaseForm.vue";
+import BaseHeader from "@/components/base/BaseHeader.vue";
 
 export default defineComponent({
   name: "RegisterView",

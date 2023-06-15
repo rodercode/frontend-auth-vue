@@ -31,8 +31,8 @@ import consumerService from "@/service/consumerService";
 import authService from "@/service/authService";
 
 // Components imports
-import BaseForm from "@/components/BaseForm.vue";
-import BaseHeader from "@/components/BaseHeader.vue";
+import BaseForm from "@/components/base/BaseForm.vue";
+import BaseHeader from "@/components/base/BaseHeader.vue";
 
 export default defineComponent({
   name: "RegisterView",

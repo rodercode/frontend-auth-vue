@@ -24,8 +24,8 @@
 <script>
 import jwtService from "@/service/jwtService";
 
-//Components
-import BaseButton from "./BaseButton.vue";
+// Components imports
+import BaseButton from "@/components/base/BaseButton.vue"
 export default {
   components: { BaseButton },
   props: {

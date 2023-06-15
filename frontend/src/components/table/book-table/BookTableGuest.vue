@@ -3,7 +3,6 @@
  * Date: 14e June
  * This is guest view component no Authorization is needed
  -->
-
 <template>
   <div v-if="bookList.length !== 0">
     <table class="table-book-list">
@@ -11,9 +10,6 @@
         <th>Book title</th>
         <th>Book author</th>
         <th>Availability</th>
-        <slot>
-
-        </slot>
       </tr>
       <tr v-for="book in displayBooks" :key="book.title">
         <td>{{ book.title }}</td>

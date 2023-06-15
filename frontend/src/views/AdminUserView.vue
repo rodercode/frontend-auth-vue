@@ -77,9 +77,9 @@ import jwtService from "@/service/jwtService";
 import userService from "@/service/userService";
 
 // Components import
-import BaseButton from "@/components/BaseButton.vue";
-import BaseHeader from "@/components/BaseHeader.vue";
-import NewPopup from "@/components/NewPopup.vue";
+import BaseButton from "@/components/base/BaseButton.vue";
+import BaseHeader from "@/components/base/BaseHeader.vue";
+import NewPopup from "@/components/popup/NewPopup.vue";
 
 export default defineComponent({
   name: "AdminUserView",

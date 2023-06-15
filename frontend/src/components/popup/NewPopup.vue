@@ -21,7 +21,7 @@
 import { defineComponent } from "vue";
 
 // Components import
-import BaseButton from "./BaseButton.vue";
+import BaseButton from "@/components/base/BaseButton.vue"
 export default defineComponent({
   components: { BaseButton },
   data() {
