@@ -21,4 +21,10 @@ export default {
     const res = await tokenAxios.get(url);
     return res.data.users;
   },
+
+  async deleteUser() {
+    const url = "http://localhost:8000/admin/users";
+    const res = await tokenAxios.delete(url, );
+    console.log(res.data);
+  },
 };

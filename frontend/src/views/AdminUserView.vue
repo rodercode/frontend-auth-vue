@@ -124,6 +124,7 @@ export default defineComponent({
 
     handleDeleteButton(){
       this.popupDelete = true;
+      userService.deleteUser()
     },
 
     cancelPopup() {
