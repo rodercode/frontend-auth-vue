@@ -36,7 +36,7 @@ export default defineComponent({
       header: "Register",
       msg: "" as string | undefined,
       btnText: "Sign up",
-      path: "/login",
+      path: "/",
     };
   },
   methods: {

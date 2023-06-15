@@ -5,14 +5,14 @@
  -->
 
 <template>
-  <div class="container">
+  <div>
     <BaseHeader
       class="header-online-state"
       :username="user.username"
       :role="user.role"
     />
 
-    <NewPopup @cancelPopupWindow="cancelPopup" v-if="popup == true"  />
+    <NewPopup  @cancelPopupWindow="cancelPopup" v-if="popup == true"  />
     <div class="admin">
       <div class="container-upper">
         <input
@@ -150,6 +150,8 @@ export default defineComponent({
 </script>
 
 <style scoped>
+
+
 .admin {
   margin: 4em 4em 0em 4em;
 }

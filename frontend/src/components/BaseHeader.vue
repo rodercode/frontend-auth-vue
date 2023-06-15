@@ -35,7 +35,7 @@ export default {
   methods: {
     handleLogoutButton() {
       jwtService.deleteJwt("jwt");
-      this.$router.push("/login");
+      this.$router.push("/");
     },
   },
 };

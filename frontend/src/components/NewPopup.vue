@@ -38,13 +38,15 @@ export default defineComponent({
 </script>
 
 <style lang="css" scoped>
+
 .popup {
   position: fixed;
   right: 30%;
   bottom: 30%;
-  background-color: grey;
+   background-color: grey; 
   padding: 3em 4em;
   text-align: center;
+  filter: blur(0);
 }
 
 .container-headline {

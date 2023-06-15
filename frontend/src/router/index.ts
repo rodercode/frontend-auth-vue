@@ -19,7 +19,7 @@ import AdminUserView from "@/views/AdminUserView.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
-    path: "/login",
+    path: "/",
     name: "login",
     component: LoginView,
   },
