@@ -22,6 +22,12 @@ export default {
     return res.data.users;
   },
 
+  async promoteUser(username: string): Promise<void> {
+    const url = "http://localhost:8000/admin/users";
+    const res = await tokenAxios.put(url, username);
+    console.log(res.data.message);
+  },
+
   async deleteUser(username: string): Promise<void> {
     const url = "http://localhost:8000/admin/users";
     const config = {
