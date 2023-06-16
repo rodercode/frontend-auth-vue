@@ -6,11 +6,24 @@
 
 <template>
   <div>
-    <BaseHeader :username="user.username" :role="user.role" btnName="Sign out" />
+    <BaseHeader
+      :username="user.username"
+      :role="user.role"
+      btnName="Sign out"
+    />
 
-    <PopupWindowDelete @cancelPopupWindow="cancelPopup" v-if="popupDelete == true" />
-    <PopupWindowPromote @cancelPopupWindow="cancelPopup" v-if="popupPromote == true" />
-    
+    <PopupWindowDelete
+      @cancelPopupWindow="cancelPopup"
+      v-if="popupDelete == true"
+      @customMethod="deleteUser"
+      type="user"
+      :name="username"
+    />
+    <PopupWindowPromote
+      @cancelPopupWindow="cancelPopup"
+      v-if="popupPromote == true"
+    />
+
     <div class="admin">
       <div class="container-upper">
         <input
@@ -55,7 +68,7 @@
                 <BaseButton
                   class="btn btn-action"
                   btn-text="Delete"
-                  @click="handleDeleteButton"
+                  @click="handleDeleteButton(user.username)"
                 />
               </div>
             </td>
@@ -82,7 +95,7 @@ import userService from "@/service/userService";
 import BaseButton from "@/components/base/BaseButton.vue";
 import BaseHeader from "@/components/base/BaseHeader.vue";
 import PopupWindowDelete from "@/components/popup/PopupWindowDelete.vue";
-import PopupWindowPromote from "@/components/popup/PopupWindowPromote.vue"
+import PopupWindowPromote from "@/components/popup/PopupWindowPromote.vue";
 
 export default defineComponent({
   name: "AdminUserView",
@@ -97,20 +110,13 @@ export default defineComponent({
       user: {} as User,
       popupPromote: false,
       popupDelete: false,
+      username: "",
     };
   },
   // Handle Promise from user service
-  async created() {
-    this.users = await userService.getUserList();
-
-    // Add empty purchases array if purchases doesn't exist
-    this.users.forEach((user) => {
-      if (user.purchases == undefined) {
-        user.purchases = [];
-      }
-    });
-    this.displayUsers = this.users;
-    this.user = await userService.getUser();
+  created() {
+    this.getUserList();
+    this.getUser();
   },
   watch: {
     userInput() {
@@ -118,13 +124,32 @@ export default defineComponent({
     },
   },
   methods: {
+    async getUserList() {
+      this.users = await userService.getUserList();
+      // Add empty purchases array if purchases doesn't exist
+      this.users.forEach((user) => {
+        if (user.purchases == undefined) {
+          user.purchases = [];
+        }
+      });
+      this.displayUsers = this.users;
+    },
+    async getUser() {
+      this.user = await userService.getUser();
+    },
     handlePromoteButton() {
       this.popupPromote = true;
     },
 
-    handleDeleteButton(){
+    handleDeleteButton(username: string) {
       this.popupDelete = true;
-      userService.deleteUser()
+      this.username = username;
+    },
+
+    deleteUser() {
+      userService.deleteUser(this.username);
+      this.getUserList();
+      this.popupDelete = false;
     },
 
     cancelPopup() {

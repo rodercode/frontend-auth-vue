@@ -22,9 +22,15 @@ export default {
     return res.data.users;
   },
 
-  async deleteUser() {
+  async deleteUser(username: string): Promise<void> {
     const url = "http://localhost:8000/admin/users";
-    const res = await tokenAxios.delete(url, );
+    const config = {
+      data: {
+        username: username,
+      },
+    };
+
+    const res = await tokenAxios.delete(url, config);
     console.log(res.data);
   },
 };
