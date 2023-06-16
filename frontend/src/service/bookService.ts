@@ -7,6 +7,8 @@
 import axios from "axios";
 import { Book } from "@/model/book";
 import tokenAxios from "@/interceptor/tokenAxios";
+import { Previous } from "@/model/previous";
+import { Current } from "@/model/current";
 
 export default {
   // Get a list of all books
@@ -30,9 +32,9 @@ export default {
     console.log(res.data);
   },
 
-  async updateBook(previous:{title:string}, current:Book){
+  async updateBook(previous:Previous, current:Current) {
     const url = "http://localhost:8000/admin/books";
-    const res = await tokenAxios.patch(url, previous, current )
-    console.log(res);
-  }
+    const res = await tokenAxios.put(url,{previous, current});
+    console.log(res.data);
+  },
 };

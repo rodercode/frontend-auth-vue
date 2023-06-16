@@ -14,6 +14,7 @@
     <PopupWindowEdit
       @cancelPopupWindow="cancelPopup"
       v-if="popupEdit == true"
+      @sendBookDetails="updateBook"
     />
     <PopupWindowAdd
       @cancelPopupWindow="cancelPopup"
@@ -90,7 +91,7 @@
                 <BaseButton
                   class="btn btn-action"
                   btn-text="Edit"
-                  @click="handleEditButton"
+                  @click="handleEditButton(book.title)"
                 />
                 <BaseButton
                   class="btn btn-action"
@@ -114,6 +115,8 @@ import { defineComponent } from "vue";
 // Model imports
 import { Book } from "@/model/book";
 import { User } from "@/model/user";
+import {Previous} from "@/model/previous";
+import {Current} from "@/model/current";
 
 // Service imports
 import bookService from "@/service/bookService";
@@ -147,6 +150,7 @@ export default defineComponent({
       popupDelete: false,
       popupEdit: false,
       popupAdd: false,
+      previous: {} as Previous, 
     };
   },
   // Handle promise from book service and user service
@@ -170,7 +174,8 @@ export default defineComponent({
       this.popupAdd = true;
     },
 
-    handleEditButton() {
+    handleEditButton(title:string) {
+      this.previous.title = title;
       this.popupEdit = true;
     },
 
@@ -194,6 +199,12 @@ export default defineComponent({
       await bookService.addBook(book);
       this.getBookList();
       this.popupAdd = false;
+    },
+
+    async updateBook(current:Current){
+      await bookService.updateBook(this.previous, current);
+      this.getBookList();
+      this.popupEdit=false;
     },
 
     cancelPopup() {

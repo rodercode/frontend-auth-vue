@@ -8,9 +8,9 @@
       <label>Book title</label>
       <BaseInput
         class="input input-book"
-        textType="password"
+        textType="text"
         placeholderValue="Enter new title..."
-        v-model="titleInput"
+        v-model="current.title"
       />
     </div>
 
@@ -18,9 +18,9 @@
       <label>Author by book</label>
       <BaseInput
         class="input input-book"
-        textType="password"
+        textType="text"
         placeholderValue="Enter new author..."
-        v-model="authorInput"
+        v-model="current.author"
       />
     </div>
 
@@ -28,14 +28,14 @@
       <label>Book Quantity</label>
       <BaseInput
         class="input input-book"
-        textType="password"
+        textType="text"
         placeholderValue="Enter new quantity..."
-        v-model="quantityInput"
+        v-model="current.quantity"
       />
     </div>
 
     <div class="container-btn">
-      <BaseButton class="btn btn-popup" btnText="Edit" />
+      <BaseButton class="btn btn-popup" btnText="Edit" @click="handleEditButton" />
       <BaseButton
         class="btn btn-popup"
         btnText="Cancel"
@@ -47,6 +47,9 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 
+// Model imports
+import { Current } from "@/model/current";
+
 // Components import
 import BaseButton from "@/components/base/BaseButton.vue";
 import BaseInput from "../base/BaseInput.vue";
@@ -57,12 +60,17 @@ export default defineComponent({
   data() {
     return {
       popup: false,
-      titleInput: "",
-      authorInput: "",
-      quantityInput: "",
+      current:{} as Current,
     };
   },
   methods: {
+    handleEditButton(){
+      this.$emit("sendBookDetails", {
+        title: this.current.title,
+        author: this.current.author,
+        quantity: this.current.quantity,
+      });
+    },
     handleCancelButton() {
       this.$emit("cancelPopupWindow");
     },
