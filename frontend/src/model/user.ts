@@ -1,7 +1,7 @@
 /**
  * Creator: Marcus Groth
  * Date: 14e June
- * info: This is a User model
+ * info: This is a User model that define the type of a user variable in the app
  */
 
 import { Book } from "./book";

@@ -1,7 +1,7 @@
 /**
  * Creator: Marcus Groth
  * Date: 14e June
- * info: This file is a book service that is meant to send all sort of book request to the backend server.
+ * info: This file is a book service has all methods that send book related request to the backend like: get, order, add and update books
  */
 
 import axios from "axios";

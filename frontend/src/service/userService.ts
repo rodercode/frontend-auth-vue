@@ -1,7 +1,7 @@
 /**
  * Creator: Marcus Groth
  * Date: 14e June
- * info: This file is a user service that is meant to send all sort of user request to the backend server.
+ * info: This file is a user service and here all request related to user that will send over to backend to get, promote and remove a user 
  */
 
 import tokenAxios from "@/interceptor/tokenAxios";

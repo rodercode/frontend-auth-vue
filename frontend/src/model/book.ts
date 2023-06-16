@@ -1,7 +1,7 @@
 /**
  * Creator: Marcus Groth
  * Date: 14e June
- * info: This is a book model
+ * info: This is a book model that is used to define type of book variable in the project
  */
 
 export interface Book {
