@@ -11,19 +11,21 @@
       :role="user.role"
       btnName="Sign out"
     />
-    <PopupWindowEdit
-      @cancelPopupWindow="cancelPopup"
-      v-if="popupEdit == true"
-      @sendBookDetails="updateBook"
-    />
+
     <PopupWindowAdd
       @cancelPopupWindow="cancelPopup"
       v-if="popupAdd == true"
       @sendBookDetails="addBook"
     />
+    <PopupWindowEdit
+      @cancelPopupWindow="cancelPopup"
+      v-if="popupEdit == true"
+      @sendBookDetails="updateBook"
+    />
     <PopupWindowDelete
       @cancelPopupWindow="cancelPopup"
       v-if="popupDelete == true"
+      @customMethod="deleteBook"
     />
 
     <div class="admin">
@@ -96,7 +98,7 @@
                 <BaseButton
                   class="btn btn-action"
                   btn-text="Delete"
-                  @click="handleDeleteButton"
+                  @click="handleDeleteButton(book.title)"
                 />
               </div>
             </td>
@@ -151,6 +153,7 @@ export default defineComponent({
       popupEdit: false,
       popupAdd: false,
       previous: {} as Previous, 
+      title:"",
     };
   },
   // Handle promise from book service and user service
@@ -179,7 +182,8 @@ export default defineComponent({
       this.popupEdit = true;
     },
 
-    handleDeleteButton() {
+    handleDeleteButton(title:string) {
+      this.title = title;
       this.popupDelete = true;
     },
 
@@ -205,6 +209,13 @@ export default defineComponent({
       await bookService.updateBook(this.previous, current);
       this.getBookList();
       this.popupEdit=false;
+    },
+
+    async deleteBook(){
+      console.log("delete");
+      await bookService.deleteBook(this.title);
+      this.getBookList();
+      this.popupDelete=false;
     },
 
     cancelPopup() {

@@ -19,22 +19,34 @@ export default {
   },
 
   // Allow user to make an order of books
-  async orderBooks(title: string, purchased: number) {
+  async orderBooks(title: string, purchased: number): Promise<string> {
     const url = "http://localhost:8000/library/user/books";
     await tokenAxios.post(url, { title: title, quantity: purchased });
     return "User has placed an order!";
   },
 
   // Allow admin to add new book to the system
-  async addBook(book: Book) {
+  async addBook(book: Book): Promise<void> {
     const url = "http://localhost:8000/admin/books";
     const res = await tokenAxios.post(url, book);
-    console.log(res.data);
+    console.log(res.data.message);
   },
 
-  async updateBook(previous:Previous, current:Current) {
+  async updateBook(previous: Previous, current: Current): Promise<void> {
     const url = "http://localhost:8000/admin/books";
-    const res = await tokenAxios.put(url,{previous, current});
-    console.log(res.data);
+    const res = await tokenAxios.put(url, { previous, current });
+    console.log(res.data.message);
+  },
+
+  async deleteBook(title: string): Promise<void> {
+    const url = "http://localhost:8000/admin/books/";
+    const config = {
+      data: {
+        title: title,
+      },
+    };
+
+    const res = await tokenAxios.delete(url, config);
+    console.log(res.data.message);
   },
 };
