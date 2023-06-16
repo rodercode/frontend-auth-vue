@@ -73,17 +73,20 @@
             <td>
               <div class="container-place-order">
                 <BaseButton
+                  :disabled="book.purchased === 0"
                   class="btn btn-icon"
                   btn-text="-"
                   @click="book.purchased--"
                 />
                 <p>{{ book.purchased }}</p>
                 <BaseButton
+                  :disabled="book.quantity === book.purchased"
                   class="btn btn-icon"
                   btn-text="+"
                   @click="book.purchased++"
                 />
                 <BaseButton
+                  :disabled="book.quantity === 0 || book.purchased === 0"
                   class="btn btn-order"
                   btn-text="Order"
                   @click="handleOrderButton(book.title, book.purchased)"
@@ -119,8 +122,8 @@ import { defineComponent } from "vue";
 // Model imports
 import { Book } from "@/model/book";
 import { User } from "@/model/user";
-import {Previous} from "@/model/previous";
-import {Current} from "@/model/current";
+import { Previous } from "@/model/previous";
+import { Current } from "@/model/current";
 
 // Service imports
 import bookService from "@/service/bookService";
@@ -154,8 +157,8 @@ export default defineComponent({
       popupDelete: false,
       popupEdit: false,
       popupAdd: false,
-      previous: {} as Previous, 
-      title:"",
+      previous: {} as Previous,
+      title: "",
     };
   },
   // Handle promise from book service and user service
@@ -179,22 +182,22 @@ export default defineComponent({
       this.popupAdd = true;
     },
 
-    handleEditButton(title:string) {
+    handleEditButton(title: string) {
       this.previous.title = title;
       this.popupEdit = true;
     },
 
-    handleDeleteButton(title:string) {
+    handleDeleteButton(title: string) {
       this.title = title;
       this.popupDelete = true;
     },
 
-    async getBookList(){
+    async getBookList() {
       this.bookList = await bookService.getBooks();
       this.bookList.forEach((book) => (book.purchased = 0));
       this.displayBooks = this.bookList;
     },
-    async getUser(){
+    async getUser() {
       this.user = await userService.getUser();
     },
 
@@ -207,17 +210,17 @@ export default defineComponent({
       this.popupAdd = false;
     },
 
-    async updateBook(current:Current){
+    async updateBook(current: Current) {
       await bookService.updateBook(this.previous, current);
       this.getBookList();
-      this.popupEdit=false;
+      this.popupEdit = false;
     },
 
-    async deleteBook(){
+    async deleteBook() {
       console.log("delete");
       await bookService.deleteBook(this.title);
       this.getBookList();
-      this.popupDelete=false;
+      this.popupDelete = false;
     },
 
     cancelPopup() {

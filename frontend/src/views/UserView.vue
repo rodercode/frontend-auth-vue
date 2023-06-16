@@ -33,17 +33,20 @@
             <td>
               <div class="container-place-order">
                 <BaseButton
+                  :disabled="book.purchased === 0"
                   class="btn btn-icon"
                   btn-text="-"
                   @click="book.purchased--"
                 />
                 <p>{{ book.purchased }}</p>
                 <BaseButton
+                  :disabled="book.quantity === book.purchased"
                   class="btn btn-icon"
                   btn-text="+"
                   @click="book.purchased++"
                 />
                 <BaseButton
+                  :disabled="book.quantity === 0 || book.purchased === 0"
                   class="btn btn-order"
                   btn-text="Order"
                   @click="placeOrder(book.title, book.purchased)"
@@ -88,8 +91,8 @@ export default defineComponent({
       user: {} as User,
     };
   },
-  
-  // Handle promise from book service and user service 
+
+  // Handle promise from book service and user service
   async created() {
     this.bookList = await bookService.getBooks();
     this.bookList.forEach((book) => (book.purchased = 0));
@@ -102,7 +105,10 @@ export default defineComponent({
     },
   },
   methods: {
-    
+    increase(purchased: number) {
+      return purchased++;
+    },
+
     // Make an order to the backend
     async placeOrder(title: string, purchased: number) {
       await bookService.orderBooks(title, purchased);
@@ -111,14 +117,14 @@ export default defineComponent({
     refreshPage() {
       this.$router.go(0);
     },
-    
+
     // Render books that should be displayed
     renderBooks() {
       this.displayBooks = this.bookList.filter((book) =>
         book.title.includes(this.userInput)
       );
     },
-    
+
     // Will start a render timer when user stop typing
     renderTimer() {
       clearTimeout(this.timer);
