@@ -29,4 +29,10 @@ export default {
     const res = await tokenAxios.post(url, book);
     console.log(res.data);
   },
+
+  async updateBook(previous:{title:string}, current:Book){
+    const url = "http://localhost:8000/admin/books";
+    const res = await tokenAxios.patch(url, previous, current )
+    console.log(res);
+  }
 };

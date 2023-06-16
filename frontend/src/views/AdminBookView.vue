@@ -81,7 +81,7 @@
                 <BaseButton
                   class="btn btn-order"
                   btn-text="Order"
-                  @click="placeOrder(book.title, book.purchased)"
+                  @click="handleOrderButton(book.title, book.purchased)"
                 />
               </div>
             </td>
@@ -150,11 +150,9 @@ export default defineComponent({
     };
   },
   // Handle promise from book service and user service
-  async created() {
-    this.bookList = await bookService.getBooks();
-    this.bookList.forEach((book) => (book.purchased = 0));
-    this.displayBooks = this.bookList;
-    this.user = await userService.getUser();
+  created() {
+    this.getBookList();
+    this.getUser();
   },
   watch: {
     userInput() {
@@ -163,15 +161,11 @@ export default defineComponent({
   },
   methods: {
     // Make an order to the backend
-    async placeOrder(title: string, purchased: number) {
-      await bookService.orderBooks(title, purchased);
+    handleOrderButton(title: string, purchased: number) {
+      this.orderBook(title, purchased);
+      this.getBookList();
       this.refreshPage();
     },
-    addBook(book: Book) {
-      console.log("add book");
-      console.log(book);
-    },
-
     handleAddButton() {
       this.popupAdd = true;
     },
@@ -183,6 +177,25 @@ export default defineComponent({
     handleDeleteButton() {
       this.popupDelete = true;
     },
+
+    async getBookList(){
+      this.bookList = await bookService.getBooks();
+      this.bookList.forEach((book) => (book.purchased = 0));
+      this.displayBooks = this.bookList;
+    },
+    async getUser(){
+      this.user = await userService.getUser();
+    },
+
+    async orderBook(title: string, purchased: number) {
+      await bookService.orderBooks(title, purchased);
+    },
+    async addBook(book: Book) {
+      await bookService.addBook(book);
+      this.getBookList();
+      this.popupAdd = false;
+    },
+
     cancelPopup() {
       this.popupAdd = false;
       this.popupEdit = false;
