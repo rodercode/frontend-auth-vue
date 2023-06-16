@@ -22,4 +22,11 @@ export default {
     await tokenAxios.post(url, { title: title, quantity: purchased });
     return "User has placed an order!";
   },
+
+  // Allow admin to add new book to the system
+  async addBook(book: Book) {
+    const url = "http://localhost:8000/admin/books";
+    const res = await tokenAxios.post(url, book);
+    console.log(res.data);
+  },
 };

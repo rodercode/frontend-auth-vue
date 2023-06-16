@@ -8,7 +8,7 @@
       <label>Book title</label>
       <BaseInput
         class="input input-book"
-        textType="password"
+        textType="text"
         placeholderValue="Enter new title..."
         v-model="titleInput"
       />
@@ -18,7 +18,7 @@
       <label>Author by book</label>
       <BaseInput
         class="input input-book"
-        textType="password"
+        textType="text"
         placeholderValue="Enter new author..."
         v-model="authorInput"
       />
@@ -28,7 +28,7 @@
       <label>Book Quantity</label>
       <BaseInput
         class="input input-book"
-        textType="password"
+        textType="text"
         placeholderValue="Enter new quantity..."
         v-model="quantityInput"
       />
@@ -37,7 +37,7 @@
    
 
     <div class="container-btn">
-      <BaseButton class="btn btn-popup" btnText="Add" />
+      <BaseButton class="btn btn-popup" btnText="Add" @click="handleAddButton" />
       <BaseButton
         class="btn btn-popup"
         btnText="Cancel"
@@ -65,6 +65,13 @@ export default defineComponent({
     };
   },
   methods: {
+    handleAddButton(){
+      this.$emit("sendBookDetails", {
+        title: this.titleInput,
+        author: this.authorInput,
+        quantity: this.quantityInput,
+      });
+    },
     handleCancelButton() {
       this.$emit("cancelPopupWindow");
     },

@@ -34,8 +34,6 @@
       />
     </div>
 
-   
-
     <div class="container-btn">
       <BaseButton class="btn btn-popup" btnText="Edit" />
       <BaseButton

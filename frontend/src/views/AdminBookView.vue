@@ -11,10 +11,19 @@
       :role="user.role"
       btnName="Sign out"
     />
-    <PopupWindowEdit @cancelPopupWindow="cancelPopup" v-if="popupEdit == true" />
-    <PopupWindowAdd @cancelPopupWindow="cancelPopup" v-if="popupAdd == true" />
-    <PopupWindowDelete @cancelPopupWindow="cancelPopup" v-if="popupDelete == true" />
-
+    <PopupWindowEdit
+      @cancelPopupWindow="cancelPopup"
+      v-if="popupEdit == true"
+    />
+    <PopupWindowAdd
+      @cancelPopupWindow="cancelPopup"
+      v-if="popupAdd == true"
+      @sendBookDetails="addBook"
+    />
+    <PopupWindowDelete
+      @cancelPopupWindow="cancelPopup"
+      v-if="popupDelete == true"
+    />
 
     <div class="admin">
       <div class="container-upper">
@@ -24,7 +33,11 @@
           type="text"
           v-model="userInput"
         />
-        <BaseButton class="btn btn-add-book" btn-text="Add new book" @click="handleAddButton" />
+        <BaseButton
+          class="btn btn-add-book"
+          btn-text="Add new book"
+          @click="handleAddButton"
+        />
         <div class="container-btns-tab">
           <BaseButton
             class="btn-tab"
@@ -74,8 +87,16 @@
             </td>
             <td>
               <div class="container-btns-action">
-                <BaseButton class="btn btn-action" btn-text="Edit" @click="handleEditButton" />
-                <BaseButton class="btn btn-action" btn-text="Delete" @click="handleDeleteButton" />
+                <BaseButton
+                  class="btn btn-action"
+                  btn-text="Edit"
+                  @click="handleEditButton"
+                />
+                <BaseButton
+                  class="btn btn-action"
+                  btn-text="Delete"
+                  @click="handleDeleteButton"
+                />
               </div>
             </td>
           </tr>
@@ -108,7 +129,13 @@ import PopupWindowAdd from "@/components/popup/PopupWindowAdd.vue";
 
 export default defineComponent({
   name: "AdminBookView",
-  components: { BaseButton, BaseHeader, PopupWindowDelete, PopupWindowEdit, PopupWindowAdd },
+  components: {
+    BaseButton,
+    BaseHeader,
+    PopupWindowDelete,
+    PopupWindowEdit,
+    PopupWindowAdd,
+  },
   data() {
     return {
       userInput: "",
@@ -118,8 +145,8 @@ export default defineComponent({
       token: jwtService.getJwt("jwt"),
       user: {} as User,
       popupDelete: false,
-      popupEdit:false,
-      popupAdd:false,
+      popupEdit: false,
+      popupAdd: false,
     };
   },
   // Handle promise from book service and user service
@@ -140,16 +167,20 @@ export default defineComponent({
       await bookService.orderBooks(title, purchased);
       this.refreshPage();
     },
+    addBook(book: Book) {
+      console.log("add book");
+      console.log(book);
+    },
 
-    handleAddButton(){
+    handleAddButton() {
       this.popupAdd = true;
     },
 
-    handleEditButton(){
+    handleEditButton() {
       this.popupEdit = true;
     },
 
-    handleDeleteButton(){
+    handleDeleteButton() {
       this.popupDelete = true;
     },
     cancelPopup() {
