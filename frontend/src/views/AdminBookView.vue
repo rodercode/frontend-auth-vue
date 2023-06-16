@@ -26,6 +26,8 @@
       @cancelPopupWindow="cancelPopup"
       v-if="popupDelete == true"
       @customMethod="deleteBook"
+      type="book"
+      :name="title"
     />
 
     <div class="admin">

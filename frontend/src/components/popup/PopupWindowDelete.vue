@@ -4,8 +4,8 @@
       <h1>Change user settings</h1>
     </div>
     <div class="container-info">
-      <p>Are you sure you want to delete user</p>
-      <p>Marcus</p>
+      <p>Are you sure you want to delete {{ type }} </p>
+      <p>{{ name }}</p>
     </div>
     <div class="container-btn">
       <BaseButton class="btn btn-popup" btnText="Delete" @click="handleDeleteButton" />
@@ -25,6 +25,10 @@ import BaseButton from "@/components/base/BaseButton.vue"
 export default defineComponent({
   name:"PopupWindow",
   components: { BaseButton },
+  props:{
+    name:String,
+    type:String,
+  },
   data() {
     return {
       popup: false,
