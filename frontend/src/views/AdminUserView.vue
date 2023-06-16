@@ -22,6 +22,9 @@
     <PopupWindowPromote
       @cancelPopupWindow="cancelPopup"
       v-if="popupPromote == true"
+      @customMethod="promoteUser"
+      type="user"
+      :name="username"
     />
 
     <div class="admin">
@@ -63,7 +66,7 @@
                 <BaseButton
                   class="btn btn-action"
                   btn-text="Promote"
-                  @click="handlePromoteButton"
+                  @click="handlePromoteButton(user.username)"
                 />
                 <BaseButton
                   class="btn btn-action"
@@ -137,13 +140,21 @@ export default defineComponent({
     async getUser() {
       this.user = await userService.getUser();
     },
-    handlePromoteButton() {
+    handlePromoteButton(username:string) {
+      this.username = username;
       this.popupPromote = true;
     },
 
     handleDeleteButton(username: string) {
       this.popupDelete = true;
       this.username = username;
+    },
+
+    promoteUser(){
+      console.log(this.username);
+      userService.promoteUser(this.username);
+      this.getUserList();
+      this.popupPromote = false;
     },
 
     deleteUser() {

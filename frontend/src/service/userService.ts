@@ -24,7 +24,7 @@ export default {
 
   async promoteUser(username: string): Promise<void> {
     const url = "http://localhost:8000/admin/users";
-    const res = await tokenAxios.put(url, username);
+    const res = await tokenAxios.put(url, { username: username });
     console.log(res.data.message);
   },
 

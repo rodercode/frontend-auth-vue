@@ -8,7 +8,7 @@
       <p>Marcus</p>
     </div>
     <div class="container-btn">
-      <BaseButton class="btn btn-popup" btnText="Promote" />
+      <BaseButton class="btn btn-popup" btnText="Promote" @click="handlePromoteButton" />
       <BaseButton
         class="btn btn-popup"
         btnText="Cancel"
@@ -31,6 +31,10 @@ export default defineComponent({
     };
   },
   methods: {
+    handlePromoteButton(){
+      this.$emit("customMethod")
+    },
+
     handleCancelButton() {
       this.$emit("cancelPopupWindow");
     },
